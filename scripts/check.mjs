@@ -58,6 +58,20 @@ for (const u of urls) { const r = await fetch(O + u.replace("https://freimoser.g
 for (const f of ["robots.txt", "llms.txt", "c67e9b3d19be863e1c5ec56c3a89f916.txt", "og-image.png", "favicon.ico", "favicon.svg", "favicon-32.png", "apple-touch-icon.png", "THIRD-PARTY-LICENSES", "assets/app.js", "assets/menu.js", "assets/styles.css"]) { const r = await fetch(`${O}${BASE}${f}`); if (r.status !== 200) fail(f + " " + r.status); }
 const og = fs.readFileSync(path.join(root, "og-image.png")); if (og.readUInt32BE(16) !== 1200 || og.readUInt32BE(20) !== 630) fail("og-image Größe");
 if (fs.readFileSync(path.join(root, "c67e9b3d19be863e1c5ec56c3a89f916.txt"), "utf8") !== "c67e9b3d19be863e1c5ec56c3a89f916") fail("IndexNow-Schlüssel");
+{
+  const allowed = new Set(["index.html", "was-ist-fhir/index.html", "fhirpath-tester/index.html"]);
+  const sister = /freimoser\.github\.io\/(?:cda-viewer|hl7v2-viewer|ldt-bdt-viewer|gdt-viewer|dicom-viewer)\//g;
+  const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => e.name === "node_modules" || e.name === ".git" ? [] : e.isDirectory() ? walk(path.join(d, e.name)) : e.name.endsWith(".html") ? [path.join(d, e.name)] : []);
+  for (const fp of walk(root)) {
+    const rel = path.relative(root, fp); const h = fs.readFileSync(fp, "utf8");
+    const blocks = (h.match(/id="weitere"/g) || []).length;
+    if (blocks > 1) fail(rel + ": mehr als ein Werkzeug-Block");
+    if (blocks === 1 && !allowed.has(rel)) fail(rel + ": Werkzeug-Block nicht vorgesehen");
+    const links = (h.match(sister) || []).length;
+    if (blocks === 0 && links) fail(rel + ": Schwester-Links außerhalb des Blocks");
+    if (/<footer[\s\S]*?freimoser\.github\.io\/(?!fhir-viewer)/.test(h)) fail(rel + ": Viewer-Links im Footer");
+  }
+}
 if (flex > 1) fail("flexchange-Links: " + flex + " (erlaubt: 0 oder 1)");
 console.log("flexchange-Links:", flex, "| Sitemap-URLs:", urls.length, "| Fehler:", bad);
 srv.close(); process.exit(bad ? 1 : 0);

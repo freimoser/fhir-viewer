@@ -64,10 +64,34 @@ export function header(path) {
 `;
 }
 
-export function toolsBlock(tools) {
+const SISTER = {
+  home: {
+    intro: "Dieselben Grundsätze (läuft im Browser, kein Upload) gelten für weitere Viewer desselben Entwicklers. Zu FHIR gehören vor allem zwei Nachbarformate:",
+    "cda-viewer": ["CDA-Arztbriefe lesen", "Klinische Dokumente (CDA) im Browser lesen"],
+    "hl7v2-viewer": ["HL7-v2-Nachrichten ansehen", "HL7-v2-Nachrichten im Browser lesen"],
+  },
+  was: {
+    intro: "FHIR steht neben älteren Formaten, die in vielen Einrichtungen weiter laufen. Zwei davon lassen sich ebenfalls im Browser ansehen:",
+    "cda-viewer": ["CDA-Dokumente im Browser öffnen", "Klinische Dokumente im Format CDA lesen"],
+    "hl7v2-viewer": ["Nachrichten im Format HL7 v2 lesen", "HL7-v2-Nachrichten im Browser lesen"],
+  },
+  path: {
+    intro: "Auch für andere Formate aus dem Gesundheitswesen gibt es Viewer, die im Browser laufen:",
+    "cda-viewer": ["Klinische CDA-Dokumente anzeigen", "Klinische Dokumente im Browser lesen"],
+    "hl7v2-viewer": ["HL7-v2-Nachrichten im Browser prüfen", "HL7-v2-Nachrichten im Browser lesen"],
+  },
+};
+
+// Höchstens ein Block pro Seite; variant wählt Einleitung und Linktexte (home | was | path).
+export function toolsBlock(tools, variant = "home") {
+  const v = SISTER[variant];
+  const sisters = ["cda-viewer", "hl7v2-viewer"].map((id) => tools.find((t) => t.id === id)).filter(Boolean);
+  const rest = variant === "home" ? tools.filter((t) => !["cda-viewer", "hl7v2-viewer"].includes(t.id)) : [];
+  const li = (t, name, desc) => `<li><a href="${t.url}">${esc(name)}</a><p>${esc(desc)}</p></li>`;
+  const items = sisters.map((t) => li(t, v[t.id][0], v[t.id][1])).concat(rest.map((t) => li(t, t.name, t.desc))).join("");
   return `<section class="box" aria-labelledby="weitere"><h2 id="weitere">Weitere Werkzeuge</h2>
-<p>Dieselben Grundsätze (läuft im Browser, kein Upload) gelten für weitere Viewer desselben Entwicklers:</p>
-<ul class="cards">${tools.map((t) => `<li><a href="${t.url}">${esc(t.name)}</a><p>${esc(t.desc)}</p></li>`).join("")}</ul></section>
+<p>${esc(v.intro)}</p>
+<ul class="cards">${items}</ul></section>
 `;
 }
 

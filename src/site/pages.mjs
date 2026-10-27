@@ -273,6 +273,7 @@ ${exHtml}</section>
 <h3>XML</h3>
 <p>Der Ausdruck läuft auf der aus XML umgewandelten Struktur. Ohne Schema erkennt der Viewer Listen nur bei mehrfach vorkommenden Elementen; ein einzelner Eintrag ist dann kein Array. Das kann bei <code>count()</code> oder Indizes zu anderen Ergebnissen führen als bei JSON.</p></section>
 <section class="box"><h2>Quellen dieser Seite</h2>${srcList(["fhirpath", "json", "xml", "medplum"])}</section>
+${toolsBlock(tools, "path")}
 ${others(path)}
 `;
     pages.push({ path, title, desc, ld: webPageLD(path, title, desc, crumbItems), body, h1: "FHIRPath-Tester für FHIR-Ressourcen", lastmod: LASTMOD, exports: { ex, pit1, pit2, pit3 } });
@@ -335,6 +336,7 @@ ${EDITORIAL_LINK ? `<p>Wo Praxis- und Krankenhaussysteme an weitere Anwendungen 
 <section class="prose" aria-labelledby="fp"><h2 id="fp">Pfade in FHIR-Daten: FHIRPath</h2>
 <p>Zum Auswählen einzelner Elemente nutzt FHIR FHIRPath. Praktische Beispiele stehen im <a href="${href("fhirpath-tester/")}">FHIRPath-Tester</a>.</p></section>
 <section class="box"><h2>Quellen dieser Seite</h2>${srcList(["overview", "resource", "json", "xml", "references", "http", "versions", "kbvBasis", "kbvMio", "isik", "hl7de"])}</section>
+${toolsBlock(tools, "was")}
 ${others(path)}
 `;
     pages.push({ path, title, desc, ld: webPageLD(path, title, desc, crumbItems), body, h1: "Was ist FHIR?", lastmod: LASTMOD, noViewer: false });

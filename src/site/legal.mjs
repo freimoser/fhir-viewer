@@ -1,5 +1,5 @@
 import { AUTHOR, SHORT, SITE, LASTMOD, SLUG } from "./config.mjs";
-import { href, url, crumbs, breadcrumbLD, toolsBlock } from "./layout.mjs";
+import { href, url, crumbs, breadcrumbLD } from "./layout.mjs";
 
 export function legalPages() {
   const ds = {
@@ -42,6 +42,5 @@ export function notFoundBody(tools) {
 <li><a href="${href("fhir-bundle-anzeigen/")}">FHIR-Bundle anzeigen</a><p>Einträge und Referenzen lesen</p></li>
 <li><a href="${href("fhirpath-tester/")}">FHIRPath-Tester</a><p>Pfadausdrücke ausprobieren</p></li>
 <li><a href="${href("was-ist-fhir/")}">Was ist FHIR?</a><p>Grundbegriffe und Quellen</p></li>
-</ul>
-${toolsBlock(tools)}`;
+</ul>`;
 }

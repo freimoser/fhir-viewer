@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<script src="/fhir-viewer/assets/menu.js?v=8c5cbecd"></script>
+<title>FHIRPath-Tester online für FHIR-Ressourcen (mit Beispielen)</title>
+<meta name="description" content="FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, typische Stolperstellen und ein Tester im Browser.">
+<meta name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg">
+<meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Thomas Freimoser">
+<meta name="theme-color" content="#0f3a5f">
+<link rel="canonical" href="https://freimoser.github.io/fhir-viewer/fhirpath-tester/">
+<link rel="icon" href="/fhir-viewer/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/fhir-viewer/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="/fhir-viewer/favicon.svg">
+<link rel="apple-touch-icon" href="/fhir-viewer/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FHIR-Viewer">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="FHIRPath-Tester online für FHIR-Ressourcen (mit Beispielen)">
+<meta property="og:description" content="FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, typische Stolperstellen und ein Tester im Browser.">
+<meta property="og:url" content="https://freimoser.github.io/fhir-viewer/fhirpath-tester/">
+<meta property="og:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Viewer für FHIR-Daten: FHIR-Ressourcen und Bundles im Browser lesen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FHIRPath-Tester online für FHIR-Ressourcen (mit Beispielen)">
+<meta name="twitter:description" content="FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, typische Stolperstellen und ein Tester im Browser.">
+<meta name="twitter:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<link rel="stylesheet" href="/fhir-viewer/assets/styles.css?v=58fcfb48">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIRPath-Tester online für FHIR-Ressourcen (mit Beispielen)","description":"FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, typische Stolperstellen und ein Tester im Browser.","url":"https://freimoser.github.io/fhir-viewer/fhirpath-tester/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FHIR-Viewer","item":"https://freimoser.github.io/fhir-viewer/"},{"@type":"ListItem","position":2,"name":"FHIRPath-Tester","item":"https://freimoser.github.io/fhir-viewer/fhirpath-tester/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/fhir-viewer/"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".14"/><path d="M9 9h14M9 16h9M9 23h12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="23" r="2.4" fill="#ffb454"/></svg><span>FHIR-Viewer</span></a>
+<button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menü öffnen"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+<nav class="nav" id="site-nav" aria-label="Hauptmenü"><ul><li><a href="/fhir-viewer/">Viewer</a></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">Bundle anzeigen</a></li><li><a href="/fhir-viewer/fhirpath-tester/" aria-current="page">FHIRPath-Tester</a></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a></li></ul></nav>
+</div></header>
+<main id="main" class="wrap">
+
+<p class="crumbs"><a href="/fhir-viewer/">FHIR-Viewer</a> › FHIRPath-Tester</p>
+<h1>FHIRPath-Tester für FHIR-Ressourcen</h1>
+<p class="lead">FHIRPath ist die Pfadsprache, mit der FHIR Elemente in Ressourcen auswählt: <code>name.where(use='official').given</code> etwa liefert die Vornamen des offiziellen Namens. Der Tester wertet Ausdrücke direkt auf Ihrem JSON oder XML aus – im Browser, ohne Upload.</p>
+<section class="box viewer" id="viewer" data-viewer data-default="patient" data-tab="fhirpath" aria-label="FHIR-Viewer">
+
+<label for="fv-input"><strong>FHIR-Daten einfügen</strong> (JSON oder XML, eine Ressource oder ein Bundle)</label>
+<textarea id="fv-input" rows="8" spellcheck="false" autocomplete="off" placeholder='{ "resourceType": "Patient", … }'></textarea>
+<div class="row">
+<button class="btn primary" id="fv-show" type="button">Anzeigen</button>
+<label class="btn" for="fv-file">Datei wählen</label><input type="file" id="fv-file" accept=".json,.xml,.fhir,application/json,application/fhir+json,application/xml,text/xml" class="visually-hidden">
+<button class="btn" id="fv-clear" type="button">Leeren</button>
+<button class="btn" type="button" data-sample="patient">Patient</button><button class="btn" type="button" data-sample="blutdruck">Blutdruck</button><button class="btn" type="button" data-sample="bundle-verweise">Bundle</button>
+</div>
+<p class="stand" id="fv-sample-note" hidden></p>
+<div id="fv-status" class="status" role="status" aria-live="polite"></div>
+<div id="fv-out" hidden></div>
+<p class="stand">Die Daten bleiben in Ihrem Browser: Es wird nichts hochgeladen. Nur zur Ansicht, kein Validator, kein Medizinprodukt.</p>
+</section>
+<section class="prose" aria-labelledby="wofuer"><h2 id="wofuer">Wofür FHIRPath in FHIR gebraucht wird</h2>
+<p>Die Spezifikation nennt FHIRPath (für R4: Release 2) als Pfadsprache für unter anderem Invarianten in <code>ElementDefinition</code> (Regeln für das Zusammenspiel von Elementen), Slicing-Diskriminatoren und Suchparameter. FHIRPath arbeitet auf dem logischen Modell einer Ressource, nicht auf der JSON- oder XML-Syntax. Praktisch heißt das: Derselbe Ausdruck gilt für JSON und XML, und ein Ausdruck liefert immer eine <em>Liste</em> (Collection) von null, einem oder mehreren Werten.</p>
+<p>Dieser Tester nutzt <code>evalFhirPath</code> aus <a href="https://github.com/medplum/medplum" rel="noopener">@medplum/core</a> (Apache-2.0), das erst beim ersten Auswerten nachgeladen wird. Die Bibliothek ist nachsichtig und nicht identisch mit anderen Implementierungen: Zum Beispiel liefert <code>name.where(use='official')family</code> (Punkt vergessen) kein Fehlersignal, sondern <code>{&quot;use&quot;:&quot;official&quot;,&quot;family&quot;:&quot;Chalmers&quot;,&quot;given&quot;:[&quot;Peter&quot;,&quot;Jam…</code>. Verlassen Sie sich für Regelwerke daher nicht allein auf dieses Ergebnis. Der Tester prüft auch nicht, ob ein Pfad für den Ressourcentyp laut Spezifikation existiert.</p></section>
+
+<section aria-labelledby="fuenf"><h2 id="fuenf">Fünf Beispiele</h2>
+<p>Alle Ergebnisse wurden beim Erzeugen dieser Seite mit demselben Code berechnet, den der Tester im Browser nutzt.</p>
+<article class="box"><h3>1. Ein Element aus einer Liste herausfiltern</h3>
+<p><code>name.where(use='official').given.first()</code> auf dem Beispiel „Patient“ ergibt: <code>[&quot;Peter&quot;]</code></p>
+<p>Ein Patient kann mehrere <code>name</code>-Einträge haben, im Beispiel drei (<code>official</code>, <code>usual</code>, <code>maiden</code>). <code>where(use='official')</code> behält den passenden Eintrag, <code>given</code> nimmt dessen Vornamen, <code>first()</code> den ersten.</p>
+<button class="btn" type="button" data-fp-sample="patient" data-fp-expr="name.where(use='official').given.first()">Im Tester ausprobieren</button></article>
+<article class="box"><h3>2. Kontaktdaten nach Verwendung wählen</h3>
+<p><code>telecom.where(use='mobile').value</code> auf dem Beispiel „Patient“ ergibt: <code>[&quot;(03) 3410 5613&quot;]</code></p>
+<p><code>telecom</code> ist eine Liste von Kontaktpunkten. Der Filter auf <code>use</code> liefert die Mobilnummer; ein Eintrag ohne <code>value</code> trägt nichts zum Ergebnis bei.</p>
+<button class="btn" type="button" data-fp-sample="patient" data-fp-expr="telecom.where(use='mobile').value">Im Tester ausprobieren</button></article>
+<article class="box"><h3>3. Einen Code aus einem bestimmten Codesystem lesen</h3>
+<p><code>code.coding.where(system='http://loinc.org').code</code> auf dem Beispiel „Observation (Körpergewicht)“ ergibt: <code>[&quot;29463-7&quot;,&quot;3141-9&quot;]</code></p>
+<p>Ein <code>CodeableConcept</code> kann mehrere Codierungen aus verschiedenen Systemen enthalten. Der Filter auf <code>system</code> lässt hier die zwei LOINC-Codes übrig – ein Ergebnis mit zwei Werten, kein einzelner Wert.</p>
+<button class="btn" type="button" data-fp-sample="observation" data-fp-expr="code.coding.where(system='http://loinc.org').code">Im Tester ausprobieren</button></article>
+<article class="box"><h3>4. Werte aus component lesen</h3>
+<p><code>component.value.ofType(Quantity).value</code> auf dem Beispiel „Observation (Blutdruck)“ ergibt: <code>[107,60]</code></p>
+<p>Der Blutdruck steht in zwei <code>component</code>-Einträgen. <code>value</code> ist ein Auswahlelement (<code>value[x]</code>); <code>ofType(Quantity)</code> wählt die Variante <code>valueQuantity</code>. Ergebnis: systolisch und diastolisch.</p>
+<button class="btn" type="button" data-fp-sample="blutdruck" data-fp-expr="component.value.ofType(Quantity).value">Im Tester ausprobieren</button></article>
+<article class="box"><h3>5. Ressourcen in einem Bundle zählen</h3>
+<p><code>entry.resource.ofType(Observation).count()</code> auf dem Beispiel „Bundle mit Referenzen“ ergibt: <code>[7]</code></p>
+<p>Bei einem Bundle gilt der Ausdruck für die Wurzel. <code>entry.resource</code> sammelt alle eingebetteten Ressourcen, <code>ofType(Observation)</code> behält die Observations, <code>count()</code> zählt sie. Im Viewer wählen Sie dazu „Ganzes Bundle“.</p>
+<button class="btn" type="button" data-fp-sample="bundle-verweise" data-fp-expr="entry.resource.ofType(Observation).count()" data-fp-scope="bundle">Im Tester ausprobieren</button></article></section>
+
+<section class="prose" aria-labelledby="stolper"><h2 id="stolper">Typische Stolperstellen</h2>
+<h3>Leere Menge statt Treffer: mehrere Codierungen</h3>
+<p><code>component.where(code.coding.code='8480-6').value.ofType(Quantity).value</code> liefert auf dem Blutdruck-Beispiel <strong>nichts</strong> (<code>[]</code>), obwohl der systolische Wert vorhanden ist. Der <code>code</code> der Komponente hat zwei Codierungen (LOINC und ein lokales System), <code>code.coding.code</code> sind also zwei Werte, und der Vergleich mit <code>=</code> auf einer Liste mit zwei Elementen trifft nicht. Besser: <code>component.where(code.coding.where(code='8480-6').exists()).value.ofType(Quantity).value</code> ergibt <code>[107]</code>.</p>
+<h3>Vergleich mit einer Liste</h3>
+<p>Ein Patient hat im Beispiel 5 <code>given</code>-Werte über alle Namen. <code>name.given = 'Peter'</code> ergibt <code>[false]</code>, weil die ganze Liste mit dem einen Text verglichen wird. <code>name.given.where($this = 'Peter').exists()</code> ergibt <code>[true]</code>.</p>
+<h3>Fehlermeldung „erwartet einen einzelnen Wert“</h3>
+<p><code>name.family + ' ' + name.given.first()</code> bricht auf dem Patienten ab, weil <code>name.family</code> zwei Werte liefert (der offizielle und der Mädchenname). Der Tester meldet: „Ein Operand ist eine Liste mit 2 Elementen, erwartet wird ein einzelner Wert. Wählen Sie mit first(), [0] oder where(…) ein Element aus.“ Mit <code>name.first().family + ' ' + name.first().given.first()</code> wählen Sie zuerst einen Namen und erhalten <code>&quot;Chalmers Peter&quot;</code>.</p>
+<h3>XML</h3>
+<p>Der Ausdruck läuft auf der aus XML umgewandelten Struktur. Ohne Schema erkennt der Viewer Listen nur bei mehrfach vorkommenden Elementen; ein einzelner Eintrag ist dann kein Array. Das kann bei <code>count()</code> oder Indizes zu anderen Ergebnissen führen als bei JSON.</p></section>
+<section class="box"><h2>Quellen dieser Seite</h2><ul class="src"><li><a href="https://hl7.org/fhir/R4/fhirpath.html" rel="noopener">FHIR R4: FHIRPath</a></li><li><a href="https://hl7.org/fhir/R4/json.html" rel="noopener">FHIR R4: JSON-Format</a></li><li><a href="https://hl7.org/fhir/R4/xml.html" rel="noopener">FHIR R4: XML-Format</a></li><li><a href="https://github.com/medplum/medplum" rel="noopener">Medplum (Apache-2.0)</a></li></ul></section>
+<section class="box"><h2>Weiterlesen</h2><ul class="cards"><li><a href="/fhir-viewer/">Viewer</a><p>JSON oder XML einfügen und sofort ansehen</p></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">FHIR-Bundle anzeigen</a><p>Bundle-Typen, Einträge und Referenzen lesen</p></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a><p>Ressourcen, JSON/XML, REST und FHIR in Deutschland</p></li></ul></section>
+
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="stand">Zuletzt aktualisiert: <time datetime="2026-10-27">27.10.2026</time></p>
+<ul>
+<li><a href="https://freimoser.de/impressum/">Impressum</a></li>
+<li><a href="/fhir-viewer/datenschutz/">Datenschutz</a></li>
+<li><a href="/fhir-viewer/quellen/">Quellen und Lizenzen</a></li>
+<li><a href="https://freimoser.de/">freimoser.de</a></li>
+<li><a href="https://www.linkedin.com/in/thomas-freimoser/" rel="me noopener">LinkedIn</a></li>
+</ul>
+<p class="disclaimer"><strong>Nur zur Ansicht, kein Medizinprodukt.</strong> Dieser Viewer ist kein Validator und ersetzt weder den offiziellen FHIR-Validator noch eine Profilprüfung. Nicht für Diagnose, Therapie oder Abrechnung verwenden.</p>
+<p class="disclaimer">HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.</p>
+<p class="disclaimer">Open-Source-Baustein: <code>@medplum/core</code> (Apache-2.0, Autor: Medplum) für den FHIRPath-Tester, lokal mitgeliefert. <a href="/fhir-viewer/quellen/">Lizenzen</a>. Gebaut in München / Remote.</p>
+</div></footer>
+<script type="module" src="/fhir-viewer/assets/app.js?v=2c56de7d"></script>
+</body>
+</html>

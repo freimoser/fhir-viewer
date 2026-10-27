@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<script src="/fhir-viewer/assets/menu.js?v=8c5cbecd"></script>
+<title>Was ist FHIR? Ressourcen, JSON/XML, Bundle und FHIR in Deutschland</title>
+<meta name="description" content="FHIR einfach erklärt: Ressourcen, JSON und XML, Referenzen, Bundles, REST und Versionen – mit Quellen zu FHIR in Deutschland (KBV, gematik, HL7 Deutschland).">
+<meta name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg">
+<meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Thomas Freimoser">
+<meta name="theme-color" content="#0f3a5f">
+<link rel="canonical" href="https://freimoser.github.io/fhir-viewer/was-ist-fhir/">
+<link rel="icon" href="/fhir-viewer/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/fhir-viewer/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="/fhir-viewer/favicon.svg">
+<link rel="apple-touch-icon" href="/fhir-viewer/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FHIR-Viewer">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Was ist FHIR? Ressourcen, JSON/XML, Bundle und FHIR in Deutschland">
+<meta property="og:description" content="FHIR einfach erklärt: Ressourcen, JSON und XML, Referenzen, Bundles, REST und Versionen – mit Quellen zu FHIR in Deutschland (KBV, gematik, HL7 Deutschland).">
+<meta property="og:url" content="https://freimoser.github.io/fhir-viewer/was-ist-fhir/">
+<meta property="og:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Viewer für FHIR-Daten: FHIR-Ressourcen und Bundles im Browser lesen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Was ist FHIR? Ressourcen, JSON/XML, Bundle und FHIR in Deutschland">
+<meta name="twitter:description" content="FHIR einfach erklärt: Ressourcen, JSON und XML, Referenzen, Bundles, REST und Versionen – mit Quellen zu FHIR in Deutschland (KBV, gematik, HL7 Deutschland).">
+<meta name="twitter:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<link rel="stylesheet" href="/fhir-viewer/assets/styles.css?v=58fcfb48">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Was ist FHIR? Ressourcen, JSON/XML, Bundle und FHIR in Deutschland","description":"FHIR einfach erklärt: Ressourcen, JSON und XML, Referenzen, Bundles, REST und Versionen – mit Quellen zu FHIR in Deutschland (KBV, gematik, HL7 Deutschland).","url":"https://freimoser.github.io/fhir-viewer/was-ist-fhir/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FHIR-Viewer","item":"https://freimoser.github.io/fhir-viewer/"},{"@type":"ListItem","position":2,"name":"Was ist FHIR?","item":"https://freimoser.github.io/fhir-viewer/was-ist-fhir/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/fhir-viewer/"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".14"/><path d="M9 9h14M9 16h9M9 23h12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="23" r="2.4" fill="#ffb454"/></svg><span>FHIR-Viewer</span></a>
+<button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menü öffnen"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+<nav class="nav" id="site-nav" aria-label="Hauptmenü"><ul><li><a href="/fhir-viewer/">Viewer</a></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">Bundle anzeigen</a></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a></li><li><a href="/fhir-viewer/was-ist-fhir/" aria-current="page">Was ist FHIR?</a></li></ul></nav>
+</div></header>
+<main id="main" class="wrap">
+
+<p class="crumbs"><a href="/fhir-viewer/">FHIR-Viewer</a> › Was ist FHIR?</p>
+<h1>Was ist FHIR?</h1>
+<p class="lead">FHIR (Fast Healthcare Interoperability Resources) ist ein Standard von HL7 International, der Gesundheitsdaten als Ressourcen wie Patient, Observation oder Encounter beschreibt; ausgetauscht werden sie meist als JSON oder XML über REST-Schnittstellen.</p>
+<p>Diese Seite erklärt die Grundbegriffe so weit, wie man sie zum Lesen von FHIR-Dateien braucht. Jeder Abschnitt nennt seine Quelle; zu den deutschen Spezifikationen steht nur, was auf den verlinkten Seiten steht.</p>
+
+<section class="prose" aria-labelledby="ressource"><h2 id="ressource">Die Ressource als Grundbaustein</h2>
+<p>Nach der FHIR-Spezifikation ist die Ressource der grundlegende Baustein: Alle austauschbaren Inhalte sind als Ressource definiert. Beispiele sind <a href="/fhir-viewer/fhir-patient-beispiel/">Patient</a>, <a href="/fhir-viewer/fhir-observation-beispiel/">Observation</a> (Messwerte), <a href="/fhir-viewer/fhir-encounter-beispiel/">Encounter</a> (Behandlungsfall) und <a href="/fhir-viewer/fhir-condition-beispiel/">Condition</a> (Diagnose oder Problem). Jede Ressource hat einen Typ (<code>resourceType</code>) und eine <code>id</code>; ihre Elemente sind in der Spezifikation mit Datentyp und Kardinalität beschrieben, zum Beispiel <code>0..1</code> für „optional, höchstens einmal“ und <code>1..1</code> für „Pflicht“.</p></section>
+
+<section class="prose" aria-labelledby="formate"><h2 id="formate">JSON und XML: dieselbe Ressource, zwei Schreibweisen</h2>
+<p>FHIR definiert eine JSON- und eine XML-Darstellung (Medientypen <code>application/fhir+json</code> und <code>application/fhir+xml</code>). In JSON steht der Typ im Feld <code>resourceType</code>; in XML ist der Typ das Wurzelelement im Namensraum <code>http://hl7.org/fhir</code>, und Werte einfacher Typen stehen im Attribut <code>value</code>. Leere Arrays und <code>null</code>-Werte gibt es in FHIR-JSON nicht; Kommentare sind nicht erlaubt. Der folgende Encounter (aus dem <a href="/fhir-viewer/fhir-encounter-beispiel/">Encounter-Beispiel</a>, hier ohne das Narrativ <code>text</code>) ist beide Male derselbe:</p>
+<div class="two">
+<div><h3>JSON</h3><pre>{
+  &quot;resourceType&quot;: &quot;Encounter&quot;,
+  &quot;id&quot;: &quot;example&quot;,
+  &quot;status&quot;: &quot;in-progress&quot;,
+  &quot;class&quot;: {
+    &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v3-ActCode&quot;,
+    &quot;code&quot;: &quot;IMP&quot;,
+    &quot;display&quot;: &quot;inpatient encounter&quot;
+  },
+  &quot;subject&quot;: {
+    &quot;reference&quot;: &quot;Patient/example&quot;
+  }
+}</pre></div>
+<div><h3>XML</h3><pre>&lt;Encounter xmlns=&quot;http://hl7.org/fhir&quot;&gt;
+  &lt;id value=&quot;example&quot;/&gt;
+  &lt;status value=&quot;in-progress&quot;/&gt;
+  &lt;class&gt;
+    &lt;system value=&quot;http://terminology.hl7.org/CodeSystem/v3-ActCode&quot;/&gt;
+    &lt;code value=&quot;IMP&quot;/&gt;
+    &lt;display value=&quot;inpatient encounter&quot;/&gt;
+  &lt;/class&gt;
+  &lt;subject&gt;
+    &lt;reference value=&quot;Patient/example&quot;/&gt;
+  &lt;/subject&gt;
+&lt;/Encounter&gt;</pre></div>
+</div>
+<p>Beim Erzeugen dieser Seite wurde das XML mit dem Parser des Viewers gelesen und mit dem JSON verglichen; beide ergeben dieselbe Struktur.</p>
+</section>
+<section class="box viewer" id="viewer" data-viewer data-default="encounter" data-tab="karte" aria-label="FHIR-Viewer">
+
+<label for="fv-input"><strong>FHIR-Daten einfügen</strong> (JSON oder XML, eine Ressource oder ein Bundle)</label>
+<textarea id="fv-input" rows="8" spellcheck="false" autocomplete="off" placeholder='{ "resourceType": "Patient", … }'></textarea>
+<div class="row">
+<button class="btn primary" id="fv-show" type="button">Anzeigen</button>
+<label class="btn" for="fv-file">Datei wählen</label><input type="file" id="fv-file" accept=".json,.xml,.fhir,application/json,application/fhir+json,application/xml,text/xml" class="visually-hidden">
+<button class="btn" id="fv-clear" type="button">Leeren</button>
+<button class="btn" type="button" data-sample="encounter">Encounter laden</button><button class="btn" type="button" data-sample="patient">Patient laden</button>
+</div>
+<p class="stand" id="fv-sample-note" hidden></p>
+<div id="fv-status" class="status" role="status" aria-live="polite"></div>
+<div id="fv-out" hidden></div>
+<p class="stand">Die Daten bleiben in Ihrem Browser: Es wird nichts hochgeladen. Nur zur Ansicht, kein Validator, kein Medizinprodukt.</p>
+</section>
+
+<section class="prose" aria-labelledby="ref"><h2 id="ref">Referenzen: wie Ressourcen aufeinander zeigen</h2>
+<p>Ressourcen enthalten sich meist nicht gegenseitig, sondern verweisen aufeinander, etwa <code>"subject": {"reference": "Patient/example"}</code> bei einem Encounter. Die Spezifikation kennt den Literalverweis (<code>reference</code>: relative oder absolute URL, bei <code>#…</code> eine contained-Ressource) und den logischen Verweis über einen <code>identifier</code>. Ob das Ziel in derselben Datei liegt, ist Sache des Bundles – mehr dazu unter <a href="/fhir-viewer/fhir-bundle-anzeigen/">FHIR-Bundle anzeigen</a>.</p></section>
+
+<section class="prose" aria-labelledby="rest"><h2 id="rest">REST: wie Ressourcen übertragen werden</h2>
+<p>Die Spezifikation beschreibt eine REST-Schnittstelle: eine Ressource lesen mit <code>GET [base]/[type]/[id]</code>, anlegen mit <code>POST [base]/[type]</code>, ändern mit <code>PUT [base]/[type]/[id]</code>, löschen mit <code>DELETE [base]/[type]/[id]</code> und suchen mit <code>GET [base]/[type]?…</code>. Das Ergebnis einer Suche kommt als <a href="/fhir-viewer/fhir-bundle-anzeigen/">Bundle</a>. Dieser Viewer greift auf keine solche Schnittstelle zu; Sie fügen Daten ein, die Sie bereits haben.</p></section>
+
+<section class="prose" aria-labelledby="versionen"><h2 id="versionen">Versionen</h2>
+<p>Dieser Viewer folgt FHIR R4 (4.0.1). Die R4-Seiten der Spezifikation weisen darauf hin, dass R5 (5.0.0) die Version ist, die R4 ablöst. Der ISiK-Leitfaden aus Deutschland (siehe unten) basiert auf FHIR 4.0.1. Daten aus R4B oder R5 zeigt der Viewer meist an; seine Hinweise sind aber auf R4 ausgelegt.</p></section>
+
+<section class="prose" aria-labelledby="deutschland"><h2 id="deutschland">FHIR in Deutschland</h2>
+<p>Die folgenden Aussagen stammen jeweils von der verlinkten Seite, abgerufen am 27.10.2026.</p>
+<ul><li>Die KBV nutzt FHIR für MIOs und weitere Schnittstellen (genannt werden eRezept, eAU und Wechselschnittstellen). Die KBV-Basis-Profile werden in mehreren MIOs wiederverwendet; Ziel ist, dass gleiche Information an gleicher Stelle zu finden ist. Sie bauen auf den Basisprofilen von HL7 Deutschland auf, abgestimmt mit der Medizininformatik-Initiative (MII). Quelle: <a href="https://hub.kbv.de/spaces/BASE1X0/pages/29098086/KBV-Basis-Profile" rel="noopener">KBV: Basis-Profile</a>.</li><li>Nach der KBV sind MIOs digitale Informationsbausteine; die ePA speichert die Daten, die MIOs legen deren Struktur fest. Zu den Basisprofilen zählen unter anderem Patient, Körperkenngrößen und Diagnose. Zu jedem MIO gibt es ein Validierungspaket, das den HL7-Validator einschließt. Quelle: <a href="https://hub.kbv.de/site/mio" rel="noopener">KBV: Medizinische Informationsobjekte (MIO)</a>.</li><li>Der Implementierungsleitfaden ISiK Basis (gematik) liegt in Version 6.0.0 vor und gilt für den Bereich Deutschland. Er basiert auf FHIR 4.0.1, nutzt eine REST-API und ist ab 2026-07-01 aktiv. Die Verpflichtung beruht laut Leitfaden auf § 373 SGB V. Für Implementierung und Betrieb ist laut Leitfaden eine SNOMED-CT-Lizenz erforderlich. Quelle: <a href="https://gemspec.gematik.de/ig/fhir/isik/basis/6.0.0/index.html" rel="noopener">gematik: ISiK Basis 6.0.0</a>.</li><li>Das Technische Komitee FHIR von HL7 Deutschland fördert und verbreitet FHIR und veröffentlicht deutsche Profile und ValueSets. Quelle: <a href="https://www.hl7.de/technische-komitees/fhir/" rel="noopener">HL7 Deutschland: Technisches Komitee FHIR</a>.</li></ul>
+<p>Für den Alltag heißt das: Wer FHIR-Daten aus deutschen Systemen liest, trifft häufig auf Profile, die auf diesen Basisprofilen aufbauen. Diese Profile prüft der Viewer nicht; er zeigt die Struktur so, wie sie in der Datei steht.</p>
+</section>
+
+<section class="prose" aria-labelledby="fp"><h2 id="fp">Pfade in FHIR-Daten: FHIRPath</h2>
+<p>Zum Auswählen einzelner Elemente nutzt FHIR FHIRPath. Praktische Beispiele stehen im <a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a>.</p></section>
+<section class="box"><h2>Quellen dieser Seite</h2><ul class="src"><li><a href="https://hl7.org/fhir/R4/overview.html" rel="noopener">FHIR R4: Overview</a></li><li><a href="https://hl7.org/fhir/R4/resource.html" rel="noopener">FHIR R4: Resource</a></li><li><a href="https://hl7.org/fhir/R4/json.html" rel="noopener">FHIR R4: JSON-Format</a></li><li><a href="https://hl7.org/fhir/R4/xml.html" rel="noopener">FHIR R4: XML-Format</a></li><li><a href="https://hl7.org/fhir/R4/references.html" rel="noopener">FHIR R4: References</a></li><li><a href="https://hl7.org/fhir/R4/http.html" rel="noopener">FHIR R4: RESTful API</a></li><li><a href="https://hl7.org/fhir/R4/versions.html" rel="noopener">FHIR R4: Versions</a></li><li><a href="https://hub.kbv.de/spaces/BASE1X0/pages/29098086/KBV-Basis-Profile" rel="noopener">KBV: Basis-Profile</a></li><li><a href="https://hub.kbv.de/site/mio" rel="noopener">KBV: Medizinische Informationsobjekte (MIO)</a></li><li><a href="https://gemspec.gematik.de/ig/fhir/isik/basis/6.0.0/index.html" rel="noopener">gematik: ISiK Basis 6.0.0</a></li><li><a href="https://www.hl7.de/technische-komitees/fhir/" rel="noopener">HL7 Deutschland: Technisches Komitee FHIR</a></li></ul></section>
+<section class="box"><h2>Weiterlesen</h2><ul class="cards"><li><a href="/fhir-viewer/">Viewer</a><p>JSON oder XML einfügen und sofort ansehen</p></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">FHIR-Bundle anzeigen</a><p>Bundle-Typen, Einträge und Referenzen lesen</p></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a><p>Pfadausdrücke an echten Beispielen ausprobieren</p></li></ul></section>
+
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="stand">Zuletzt aktualisiert: <time datetime="2026-10-27">27.10.2026</time></p>
+<ul>
+<li><a href="https://freimoser.de/impressum/">Impressum</a></li>
+<li><a href="/fhir-viewer/datenschutz/">Datenschutz</a></li>
+<li><a href="/fhir-viewer/quellen/">Quellen und Lizenzen</a></li>
+<li><a href="https://freimoser.de/">freimoser.de</a></li>
+<li><a href="https://www.linkedin.com/in/thomas-freimoser/" rel="me noopener">LinkedIn</a></li>
+</ul>
+<p class="disclaimer"><strong>Nur zur Ansicht, kein Medizinprodukt.</strong> Dieser Viewer ist kein Validator und ersetzt weder den offiziellen FHIR-Validator noch eine Profilprüfung. Nicht für Diagnose, Therapie oder Abrechnung verwenden.</p>
+<p class="disclaimer">HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.</p>
+<p class="disclaimer">Open-Source-Baustein: <code>@medplum/core</code> (Apache-2.0, Autor: Medplum) für den FHIRPath-Tester, lokal mitgeliefert. <a href="/fhir-viewer/quellen/">Lizenzen</a>. Gebaut in München / Remote.</p>
+</div></footer>
+<script type="module" src="/fhir-viewer/assets/app.js?v=2c56de7d"></script>
+</body>
+</html>

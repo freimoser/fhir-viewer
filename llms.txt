@@ -1,0 +1,30 @@
+# Viewer für FHIR-Daten
+
+> Kostenloser Viewer für FHIR-Daten im Browser (deutsch). Liest FHIR-Ressourcen und Bundles als JSON oder XML (Basis: FHIR R4), zeigt Karte und Baum, listet Bundle-Einträge, löst Referenzen innerhalb eines Bundles auf und wertet FHIRPath-Ausdrücke aus. Läuft vollständig im Browser, kein Upload, keine Cookies. Kein Validator: Profile und Terminologien werden nicht geprüft. Nur zur Ansicht, kein Medizinprodukt.
+
+Eine Plausibilitätsprüfung deckt nur ausgewählte Regeln ab (Syntax, resourceType, einzelne Pflichtfelder, Bundle-Regeln bdl-1/3/4/7/9–12, Datumsformate, Referenzen). Der FHIRPath-Tester nutzt evalFhirPath aus @medplum/core (Apache-2.0); Ergebnisse können von anderen Implementierungen abweichen. R4B- und R5-Daten werden meist angezeigt, aber nicht vollständig geprüft.
+
+## Seiten
+- [Viewer für FHIR-Daten](https://freimoser.github.io/fhir-viewer/): das Werkzeug mit Beispielen und FAQ
+- [Beispiele zum Ausprobieren](https://freimoser.github.io/fhir-viewer/#beispiele): acht Beispiele aus der FHIR-Spezifikation R4 (CC0)
+- [Häufige Fehler und Meldungen](https://freimoser.github.io/fhir-viewer/#fehler): echte Meldungen des Viewers zu typischen Eingabefehlern
+- [FHIR-Bundle anzeigen](https://freimoser.github.io/fhir-viewer/fhir-bundle-anzeigen/): Bundle-Typen, Einträge, Referenzen, Regeln
+- [FHIRPath-Tester](https://freimoser.github.io/fhir-viewer/fhirpath-tester/): fünf Beispiele und typische Stolperstellen
+- [Was ist FHIR?](https://freimoser.github.io/fhir-viewer/was-ist-fhir/): Ressourcen, JSON/XML, REST, FHIR in Deutschland mit Quellen
+- [FHIR-Patient-Beispiel](https://freimoser.github.io/fhir-viewer/fhir-patient-beispiel/)
+- [FHIR-Observation-Beispiel](https://freimoser.github.io/fhir-viewer/fhir-observation-beispiel/)
+- [FHIR-Encounter-Beispiel](https://freimoser.github.io/fhir-viewer/fhir-encounter-beispiel/)
+- [FHIR-Condition-Beispiel](https://freimoser.github.io/fhir-viewer/fhir-condition-beispiel/)
+- [Quellen und Lizenzen](https://freimoser.github.io/fhir-viewer/quellen/)
+- [Datenschutz](https://freimoser.github.io/fhir-viewer/datenschutz/)
+
+## Verwandte Tools
+- [LDT & BDT Viewer](https://freimoser.github.io/ldt-bdt-viewer/): LDT- und BDT-Dateien (Labor- und Praxisdaten) im Browser lesen
+- [GDT Viewer](https://freimoser.github.io/gdt-viewer/): GDT-Dateien im Browser lesen und Testdaten erzeugen
+- [DICOM Viewer](https://freimoser.github.io/dicom-viewer/): Röntgen-, CT- und MRT-Bilder im Browser ansehen
+- [CDA Viewer](https://freimoser.github.io/cda-viewer/): Klinische Dokumente im Browser lesen
+- [Portfolio Thomas Freimoser](https://freimoser.de/)
+- [LinkedIn Thomas Freimoser](https://www.linkedin.com/in/thomas-freimoser/)
+
+## Hinweis zu Marken
+HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.

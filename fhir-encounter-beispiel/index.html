@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<script src="/fhir-viewer/assets/menu.js?v=8c5cbecd"></script>
+<title>FHIR Encounter Beispiel (JSON): Aufenthalt und Kontakt erklärt</title>
+<meta name="description" content="FHIR-Encounter-Beispiel als JSON: status, class und subject des kleinsten sinnvollen Behandlungsfalls erklärt, mit Viewer. Beispiel aus der Spezifikation (CC0).">
+<meta name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg">
+<meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Thomas Freimoser">
+<meta name="theme-color" content="#0f3a5f">
+<link rel="canonical" href="https://freimoser.github.io/fhir-viewer/fhir-encounter-beispiel/">
+<link rel="icon" href="/fhir-viewer/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/fhir-viewer/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="/fhir-viewer/favicon.svg">
+<link rel="apple-touch-icon" href="/fhir-viewer/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FHIR-Viewer">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="FHIR Encounter Beispiel (JSON): Aufenthalt und Kontakt erklärt">
+<meta property="og:description" content="FHIR-Encounter-Beispiel als JSON: status, class und subject des kleinsten sinnvollen Behandlungsfalls erklärt, mit Viewer. Beispiel aus der Spezifikation (CC0).">
+<meta property="og:url" content="https://freimoser.github.io/fhir-viewer/fhir-encounter-beispiel/">
+<meta property="og:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Viewer für FHIR-Daten: FHIR-Ressourcen und Bundles im Browser lesen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FHIR Encounter Beispiel (JSON): Aufenthalt und Kontakt erklärt">
+<meta name="twitter:description" content="FHIR-Encounter-Beispiel als JSON: status, class und subject des kleinsten sinnvollen Behandlungsfalls erklärt, mit Viewer. Beispiel aus der Spezifikation (CC0).">
+<meta name="twitter:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<link rel="stylesheet" href="/fhir-viewer/assets/styles.css?v=58fcfb48">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIR Encounter Beispiel (JSON): Aufenthalt und Kontakt erklärt","description":"FHIR-Encounter-Beispiel als JSON: status, class und subject des kleinsten sinnvollen Behandlungsfalls erklärt, mit Viewer. Beispiel aus der Spezifikation (CC0).","url":"https://freimoser.github.io/fhir-viewer/fhir-encounter-beispiel/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FHIR-Viewer","item":"https://freimoser.github.io/fhir-viewer/"},{"@type":"ListItem","position":2,"name":"FHIR-Encounter-Beispiel","item":"https://freimoser.github.io/fhir-viewer/fhir-encounter-beispiel/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/fhir-viewer/"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".14"/><path d="M9 9h14M9 16h9M9 23h12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="23" r="2.4" fill="#ffb454"/></svg><span>FHIR-Viewer</span></a>
+<button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menü öffnen"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+<nav class="nav" id="site-nav" aria-label="Hauptmenü"><ul><li><a href="/fhir-viewer/">Viewer</a></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">Bundle anzeigen</a></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a></li></ul></nav>
+</div></header>
+<main id="main" class="wrap">
+
+<p class="crumbs"><a href="/fhir-viewer/">FHIR-Viewer</a> › FHIR-Encounter-Beispiel</p>
+<h1>FHIR-Encounter-Beispiel: Behandlungsfall als JSON</h1>
+<p class="lead">Ein Encounter beschreibt nach der Spezifikation eine Interaktion zwischen Patient und Behandelnden, in der Gesundheitsleistungen erbracht oder der Gesundheitszustand beurteilt wird. Das Beispiel ist das kürzeste der Spezifikation: drei Elemente.</p>
+<section class="box viewer" id="viewer" data-viewer data-default="encounter" data-tab="karte" aria-label="FHIR-Viewer">
+
+<label for="fv-input"><strong>FHIR-Daten einfügen</strong> (JSON oder XML, eine Ressource oder ein Bundle)</label>
+<textarea id="fv-input" rows="8" spellcheck="false" autocomplete="off" placeholder='{ "resourceType": "Patient", … }'></textarea>
+<div class="row">
+<button class="btn primary" id="fv-show" type="button">Anzeigen</button>
+<label class="btn" for="fv-file">Datei wählen</label><input type="file" id="fv-file" accept=".json,.xml,.fhir,application/json,application/fhir+json,application/xml,text/xml" class="visually-hidden">
+<button class="btn" id="fv-clear" type="button">Leeren</button>
+<button class="btn" type="button" data-sample="encounter">Encounter laden</button>
+</div>
+<p class="stand" id="fv-sample-note" hidden></p>
+<div id="fv-status" class="status" role="status" aria-live="polite"></div>
+<div id="fv-out" hidden></div>
+<p class="stand">Die Daten bleiben in Ihrem Browser: Es wird nichts hochgeladen. Nur zur Ansicht, kein Validator, kein Medizinprodukt.</p>
+</section>
+<p class="stand">Beispiel „Encounter“: <a href="https://hl7.org/fhir/R4/encounter-example.json.html" rel="noopener">Original in der FHIR-Spezifikation R4</a>, Lizenz CC0 1.0. Unverändert bis auf die Formatierung.</p>
+<section class="prose" aria-labelledby="felder"><h2 id="felder">Das Beispiel Feld für Feld</h2>
+<p>Alle drei Elemente des Beispiels:</p>
+<div class="tablewrap"><table><thead><tr><th>Element</th><th>Wert im Beispiel</th><th>Bedeutung</th></tr></thead><tbody><tr><td><code>status</code></td><td><code>&quot;in-progress&quot;</code></td><td>Pflichtfeld (<code>1..1</code>). Die Spezifikation nennt die Stationen planned, arrived, triaged, in-progress, onleave, finished und cancelled. Hier läuft der Fall (<code>in-progress</code>).</td></tr><tr><td><code>class.code</code></td><td><code>&quot;IMP&quot;</code></td><td>Pflichtfeld in R4 (<code>class</code> ist <code>1..1</code>): die Art des Kontakts als <code>Coding</code>. Im Beispiel <code>IMP</code> mit dem Anzeigetext „inpatient encounter“ (stationär). Die Spezifikation nennt als Settings ambulatory, emergency, home health, inpatient und virtual.</td></tr><tr><td><code>subject.reference</code></td><td><code>&quot;Patient/example&quot;</code></td><td>Der Patient (oder die Gruppe) des Kontakts. Das Element ist in R4 optional (<code>0..1</code>).</td></tr></tbody></table></div></section>
+<section class="prose" aria-labelledby="spec"><h2 id="spec">Was die Spezifikation dazu sagt</h2><p>Encounter hat den Reifegrad „Trial Use“ (Maturity Level 2). Die Spezifikation fasst unter einem Encounter den Ablauf von der Voraufnahme über den eigentlichen Kontakt (ambulant) bis zu Aufnahme, Aufenthalt und Entlassung (stationär) zusammen. Angaben zur Aufnahme und Entlassung stehen deshalb in einem eigenen Unterelement (<code>hospitalization</code>). Welche Elemente relevant sind, hängt vom Setting ab; <code>class</code> unterscheidet diese Settings. Die Seite weist außerdem darauf hin, dass sich Abläufe je Organisation und Land stark unterscheiden.</p></section>
+<section class="prose" aria-labelledby="probieren"><h2 id="probieren">Im Viewer ausprobieren</h2>
+<p>Ändern Sie das Beispiel im Eingabefeld und klicken Sie auf „Anzeigen“. Beim Erzeugen dieser Seite wurden die folgenden Änderungen mit demselben Code geprüft:</p>
+<ul><li>Löschen Sie das Feld <code>class</code> samt Inhalt. Der Viewer meldet: „Encounter.class fehlt. In R4 ist das Feld Pflicht (1..1); bei Daten aus anderen FHIR-Versionen kann die Anforderung abweichen.“ (Info)</li><li>Löschen Sie die Zeile <code>"status": "in-progress"</code>. Der Viewer meldet: „Pflichtfeld &quot;status&quot; fehlt (in R4 mit Kardinalität 1..1).“ (Warnung)</li></ul>
+<p>Im <a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a> liefert <code>class.code</code> den Wert <code>&quot;IMP&quot;</code>.</p></section>
+<section class="box"><h2>Quellen dieser Seite</h2><ul class="src"><li><a href="https://hl7.org/fhir/R4/encounter.html" rel="noopener">FHIR R4: Encounter</a></li><li><a href="https://hl7.org/fhir/R4/json.html" rel="noopener">FHIR R4: JSON-Format</a></li></ul></section>
+<section class="box"><h2>Weitere Ressourcen-Beispiele</h2><ul class="cards"><li><a href="/fhir-viewer/fhir-patient-beispiel/">Patient-Beispiel</a><p>Namen, Adresse und Kontakt</p></li><li><a href="/fhir-viewer/fhir-observation-beispiel/">Observation-Beispiel</a><p>Messwerte mit Code, Wert und Einheit</p></li><li><a href="/fhir-viewer/fhir-condition-beispiel/">Condition-Beispiel</a><p>Diagnose mit Statusangaben</p></li></ul></section>
+<section class="box"><h2>Weiterlesen</h2><ul class="cards"><li><a href="/fhir-viewer/">Viewer</a><p>JSON oder XML einfügen und sofort ansehen</p></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">FHIR-Bundle anzeigen</a><p>Bundle-Typen, Einträge und Referenzen lesen</p></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a><p>Pfadausdrücke an echten Beispielen ausprobieren</p></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a><p>Ressourcen, JSON/XML, REST und FHIR in Deutschland</p></li></ul></section>
+
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="stand">Zuletzt aktualisiert: <time datetime="2026-10-27">27.10.2026</time></p>
+<ul>
+<li><a href="https://freimoser.de/impressum/">Impressum</a></li>
+<li><a href="/fhir-viewer/datenschutz/">Datenschutz</a></li>
+<li><a href="/fhir-viewer/quellen/">Quellen und Lizenzen</a></li>
+<li><a href="https://freimoser.de/">freimoser.de</a></li>
+<li><a href="https://www.linkedin.com/in/thomas-freimoser/" rel="me noopener">LinkedIn</a></li>
+</ul>
+<p class="disclaimer"><strong>Nur zur Ansicht, kein Medizinprodukt.</strong> Dieser Viewer ist kein Validator und ersetzt weder den offiziellen FHIR-Validator noch eine Profilprüfung. Nicht für Diagnose, Therapie oder Abrechnung verwenden.</p>
+<p class="disclaimer">HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.</p>
+<p class="disclaimer">Open-Source-Baustein: <code>@medplum/core</code> (Apache-2.0, Autor: Medplum) für den FHIRPath-Tester, lokal mitgeliefert. <a href="/fhir-viewer/quellen/">Lizenzen</a>. Gebaut in München / Remote.</p>
+</div></footer>
+<script type="module" src="/fhir-viewer/assets/app.js?v=2c56de7d"></script>
+</body>
+</html>

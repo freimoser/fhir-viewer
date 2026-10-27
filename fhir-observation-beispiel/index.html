@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<script src="/fhir-viewer/assets/menu.js?v=8c5cbecd"></script>
+<title>FHIR Observation Beispiel: Gewicht und Blutdruck als JSON erklärt</title>
+<meta name="description" content="FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Körpergewicht und Blutdruck erklärt, mit Viewer. Beispiele aus der Spezifikation (CC0).">
+<meta name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg">
+<meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Thomas Freimoser">
+<meta name="theme-color" content="#0f3a5f">
+<link rel="canonical" href="https://freimoser.github.io/fhir-viewer/fhir-observation-beispiel/">
+<link rel="icon" href="/fhir-viewer/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/fhir-viewer/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="/fhir-viewer/favicon.svg">
+<link rel="apple-touch-icon" href="/fhir-viewer/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FHIR-Viewer">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="FHIR Observation Beispiel: Gewicht und Blutdruck als JSON erklärt">
+<meta property="og:description" content="FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Körpergewicht und Blutdruck erklärt, mit Viewer. Beispiele aus der Spezifikation (CC0).">
+<meta property="og:url" content="https://freimoser.github.io/fhir-viewer/fhir-observation-beispiel/">
+<meta property="og:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Viewer für FHIR-Daten: FHIR-Ressourcen und Bundles im Browser lesen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FHIR Observation Beispiel: Gewicht und Blutdruck als JSON erklärt">
+<meta name="twitter:description" content="FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Körpergewicht und Blutdruck erklärt, mit Viewer. Beispiele aus der Spezifikation (CC0).">
+<meta name="twitter:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<link rel="stylesheet" href="/fhir-viewer/assets/styles.css?v=58fcfb48">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIR Observation Beispiel: Gewicht und Blutdruck als JSON erklärt","description":"FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Körpergewicht und Blutdruck erklärt, mit Viewer. Beispiele aus der Spezifikation (CC0).","url":"https://freimoser.github.io/fhir-viewer/fhir-observation-beispiel/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FHIR-Viewer","item":"https://freimoser.github.io/fhir-viewer/"},{"@type":"ListItem","position":2,"name":"FHIR-Observation-Beispiel","item":"https://freimoser.github.io/fhir-viewer/fhir-observation-beispiel/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/fhir-viewer/"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".14"/><path d="M9 9h14M9 16h9M9 23h12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="23" r="2.4" fill="#ffb454"/></svg><span>FHIR-Viewer</span></a>
+<button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menü öffnen"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+<nav class="nav" id="site-nav" aria-label="Hauptmenü"><ul><li><a href="/fhir-viewer/">Viewer</a></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">Bundle anzeigen</a></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a></li></ul></nav>
+</div></header>
+<main id="main" class="wrap">
+
+<p class="crumbs"><a href="/fhir-viewer/">FHIR-Viewer</a> › FHIR-Observation-Beispiel</p>
+<h1>FHIR-Observation-Beispiel: Messwerte als JSON lesen</h1>
+<p class="lead">Observation ist die Ressource für Messungen und einfache Feststellungen zu einem Patienten oder Gerät, zum Beispiel Vitalwerte wie Körpergewicht und Blutdruck oder Laborwerte. Hier das Körpergewicht; den Blutdruck mit zwei Teilwerten laden Sie über die Schaltfläche „Blutdruck“.</p>
+<section class="box viewer" id="viewer" data-viewer data-default="observation" data-tab="karte" aria-label="FHIR-Viewer">
+
+<label for="fv-input"><strong>FHIR-Daten einfügen</strong> (JSON oder XML, eine Ressource oder ein Bundle)</label>
+<textarea id="fv-input" rows="8" spellcheck="false" autocomplete="off" placeholder='{ "resourceType": "Patient", … }'></textarea>
+<div class="row">
+<button class="btn primary" id="fv-show" type="button">Anzeigen</button>
+<label class="btn" for="fv-file">Datei wählen</label><input type="file" id="fv-file" accept=".json,.xml,.fhir,application/json,application/fhir+json,application/xml,text/xml" class="visually-hidden">
+<button class="btn" id="fv-clear" type="button">Leeren</button>
+<button class="btn" type="button" data-sample="observation">Körpergewicht</button><button class="btn" type="button" data-sample="blutdruck">Blutdruck</button>
+</div>
+<p class="stand" id="fv-sample-note" hidden></p>
+<div id="fv-status" class="status" role="status" aria-live="polite"></div>
+<div id="fv-out" hidden></div>
+<p class="stand">Die Daten bleiben in Ihrem Browser: Es wird nichts hochgeladen. Nur zur Ansicht, kein Validator, kein Medizinprodukt.</p>
+</section>
+<p class="stand">Beispiel „Observation (Körpergewicht)“: <a href="https://hl7.org/fhir/R4/observation-example.json.html" rel="noopener">Original in der FHIR-Spezifikation R4</a>, Lizenz CC0 1.0. Hier ohne SNOMED-CT-Codierungen und ohne Narrativ (<code>text</code>), weil SNOMED CT gesondert lizenziert ist.</p>
+<section class="prose" aria-labelledby="felder"><h2 id="felder">Das Beispiel Feld für Feld</h2>
+<p>Die Tabelle erklärt das Körpergewicht-Beispiel (darunter geladen). Zum Blutdruck-Beispiel gehört der Abschnitt „component“ weiter unten.</p>
+<div class="tablewrap"><table><thead><tr><th>Element</th><th>Wert im Beispiel</th><th>Bedeutung</th></tr></thead><tbody><tr><td><code>status</code></td><td><code>&quot;final&quot;</code></td><td>Pflichtfeld (<code>1..1</code>): Stand des Ergebnisses, hier <code>final</code>.</td></tr><tr><td><code>category[0].coding[0].code</code></td><td><code>&quot;vital-signs&quot;</code></td><td>Einordnung der Observation. Im Beispiel <code>vital-signs</code> (Anzeigetext „Vital Signs“).</td></tr><tr><td><code>code.coding[0].code</code></td><td><code>&quot;29463-7&quot;</code></td><td>Was gemessen wurde, ausgedrückt als Code aus einem Codesystem Das Beispiel nennt drei Codierungen: zwei aus LOINC (<code>system</code> <code>http://loinc.org</code>) und eine aus einem lokalen System (<code>acme.org</code>). Dasselbe Konzept darf mehrfach codiert sein. Das Element <code>code</code> ist Pflicht (<code>1..1</code>).</td></tr><tr><td><code>subject.reference</code></td><td><code>&quot;Patient/example&quot;</code></td><td>Verweis auf den Patienten, zu dem die Messung gehört; <code>encounter</code> verweist entsprechend auf den Kontakt.</td></tr><tr><td><code>effectiveDateTime</code></td><td><code>&quot;2016-03-28&quot;</code></td><td>Zeitpunkt der Messung (<code>effective[x]</code>). Bei Datumsangaben ohne Uhrzeit genügt <code>JJJJ-MM-TT</code>.</td></tr><tr><td><code>valueQuantity.value</code></td><td><code>185</code></td><td>Der Messwert (<code>value[x]</code>) als Zahl; die Einheit steht daneben.</td></tr><tr><td><code>valueQuantity.unit</code></td><td><code>&quot;lbs&quot;</code></td><td>Lesbare Einheit. Daneben steht <code>code</code> mit dem maschinenlesbaren UCUM-Code (<code>system</code> <code>http://unitsofmeasure.org</code>) – hier <code>[lb_av]</code> für Pfund. Das Beispiel ist also in Pfund angegeben; der Viewer rechnet nicht um.</td></tr></tbody></table></div></section>
+<section class="prose" aria-labelledby="spec"><h2 id="spec">Was die Spezifikation dazu sagt</h2><p>Observation ist laut Spezifikation eine normative Ressource (Maturity Level N). Die meisten Observations sind einfache Name/Wert-Paare mit Metadaten; manche fassen andere Observations logisch zusammen oder bestehen aus mehreren Komponenten (<strong>component</strong>). Jede Komponente hat einen eigenen <code>code</code> (<code>1..1</code>) und einen eigenen Wert (<code>value[x]</code>). Beim Blutdruck-Beispiel sind das ein systolischer und ein diastolischer Wert, die nur gemeinsam Sinn ergeben. Der Wert und ein <code>dataAbsentReason</code> (Grund für einen fehlenden Wert) dürfen nicht gleichzeitig vorkommen (Regel obs-6). Ein DiagnosticReport gibt nach der Spezifikation den klinischen oder Workflow-Kontext für eine Gruppe von Observations; er verweist auf sie, um Labor-, Bildgebungs- und andere Daten zu einem vollständigen Bericht zusammenzufügen.</p></section>
+<section class="prose" aria-labelledby="probieren"><h2 id="probieren">Im Viewer ausprobieren</h2>
+<p>Ändern Sie das Beispiel im Eingabefeld und klicken Sie auf „Anzeigen“. Beim Erzeugen dieser Seite wurden die folgenden Änderungen mit demselben Code geprüft:</p>
+<ul><li>Löschen Sie die Zeile <code>"status": "final"</code>. Der Viewer meldet: „Pflichtfeld &quot;status&quot; fehlt (in R4 mit Kardinalität 1..1).“ (Warnung)</li><li>Fügen Sie neben <code>valueQuantity</code> ein zweites Feld <code>"valueString": "185"</code> hinzu. Der Viewer meldet: „Mehrere value[x]-Felder gleichzeitig (valueQuantity, valueString). Es darf nur eines vorkommen.“ (Fehler)</li></ul>
+<p>Den Blutdruck lesen Sie im <a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a> mit <code>component.value.ofType(Quantity).value</code>; dort steht auch, warum eine naheliegende Variante mit <code>code.coding.code</code> nichts findet.</p></section>
+<section class="box"><h2>Quellen dieser Seite</h2><ul class="src"><li><a href="https://hl7.org/fhir/R4/observation.html" rel="noopener">FHIR R4: Observation</a></li><li><a href="https://hl7.org/fhir/R4/json.html" rel="noopener">FHIR R4: JSON-Format</a></li></ul></section>
+<section class="box"><h2>Weitere Ressourcen-Beispiele</h2><ul class="cards"><li><a href="/fhir-viewer/fhir-patient-beispiel/">Patient-Beispiel</a><p>Namen, Adresse und Kontakt</p></li><li><a href="/fhir-viewer/fhir-encounter-beispiel/">Encounter-Beispiel</a><p>Behandlungsfall mit Status und Klasse</p></li><li><a href="/fhir-viewer/fhir-condition-beispiel/">Condition-Beispiel</a><p>Diagnose mit Statusangaben</p></li></ul></section>
+<section class="box"><h2>Weiterlesen</h2><ul class="cards"><li><a href="/fhir-viewer/">Viewer</a><p>JSON oder XML einfügen und sofort ansehen</p></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">FHIR-Bundle anzeigen</a><p>Bundle-Typen, Einträge und Referenzen lesen</p></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a><p>Pfadausdrücke an echten Beispielen ausprobieren</p></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a><p>Ressourcen, JSON/XML, REST und FHIR in Deutschland</p></li></ul></section>
+
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="stand">Zuletzt aktualisiert: <time datetime="2026-10-27">27.10.2026</time></p>
+<ul>
+<li><a href="https://freimoser.de/impressum/">Impressum</a></li>
+<li><a href="/fhir-viewer/datenschutz/">Datenschutz</a></li>
+<li><a href="/fhir-viewer/quellen/">Quellen und Lizenzen</a></li>
+<li><a href="https://freimoser.de/">freimoser.de</a></li>
+<li><a href="https://www.linkedin.com/in/thomas-freimoser/" rel="me noopener">LinkedIn</a></li>
+</ul>
+<p class="disclaimer"><strong>Nur zur Ansicht, kein Medizinprodukt.</strong> Dieser Viewer ist kein Validator und ersetzt weder den offiziellen FHIR-Validator noch eine Profilprüfung. Nicht für Diagnose, Therapie oder Abrechnung verwenden.</p>
+<p class="disclaimer">HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.</p>
+<p class="disclaimer">Open-Source-Baustein: <code>@medplum/core</code> (Apache-2.0, Autor: Medplum) für den FHIRPath-Tester, lokal mitgeliefert. <a href="/fhir-viewer/quellen/">Lizenzen</a>. Gebaut in München / Remote.</p>
+</div></footer>
+<script type="module" src="/fhir-viewer/assets/app.js?v=2c56de7d"></script>
+</body>
+</html>

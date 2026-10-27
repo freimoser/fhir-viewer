@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<script src="/fhir-viewer/assets/menu.js?v=8c5cbecd"></script>
+<title>FHIR Patient Beispiel (JSON) erklärt – Felder der Patient-Ressource</title>
+<meta name="description" content="FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, zum Öffnen im Viewer. Beispiel aus der Spezifikation (CC0).">
+<meta name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg">
+<meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Thomas Freimoser">
+<meta name="theme-color" content="#0f3a5f">
+<link rel="canonical" href="https://freimoser.github.io/fhir-viewer/fhir-patient-beispiel/">
+<link rel="icon" href="/fhir-viewer/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/fhir-viewer/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="/fhir-viewer/favicon.svg">
+<link rel="apple-touch-icon" href="/fhir-viewer/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FHIR-Viewer">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="FHIR Patient Beispiel (JSON) erklärt – Felder der Patient-Ressource">
+<meta property="og:description" content="FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, zum Öffnen im Viewer. Beispiel aus der Spezifikation (CC0).">
+<meta property="og:url" content="https://freimoser.github.io/fhir-viewer/fhir-patient-beispiel/">
+<meta property="og:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Viewer für FHIR-Daten: FHIR-Ressourcen und Bundles im Browser lesen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FHIR Patient Beispiel (JSON) erklärt – Felder der Patient-Ressource">
+<meta name="twitter:description" content="FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, zum Öffnen im Viewer. Beispiel aus der Spezifikation (CC0).">
+<meta name="twitter:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<link rel="stylesheet" href="/fhir-viewer/assets/styles.css?v=58fcfb48">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIR Patient Beispiel (JSON) erklärt – Felder der Patient-Ressource","description":"FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, zum Öffnen im Viewer. Beispiel aus der Spezifikation (CC0).","url":"https://freimoser.github.io/fhir-viewer/fhir-patient-beispiel/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FHIR-Viewer","item":"https://freimoser.github.io/fhir-viewer/"},{"@type":"ListItem","position":2,"name":"FHIR-Patient-Beispiel","item":"https://freimoser.github.io/fhir-viewer/fhir-patient-beispiel/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/fhir-viewer/"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".14"/><path d="M9 9h14M9 16h9M9 23h12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="23" r="2.4" fill="#ffb454"/></svg><span>FHIR-Viewer</span></a>
+<button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menü öffnen"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+<nav class="nav" id="site-nav" aria-label="Hauptmenü"><ul><li><a href="/fhir-viewer/">Viewer</a></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">Bundle anzeigen</a></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a></li></ul></nav>
+</div></header>
+<main id="main" class="wrap">
+
+<p class="crumbs"><a href="/fhir-viewer/">FHIR-Viewer</a> › FHIR-Patient-Beispiel</p>
+<h1>FHIR-Patient-Beispiel: JSON lesen und verstehen</h1>
+<p class="lead">Die Patient-Ressource enthält laut Spezifikation demografische und andere administrative Angaben zu einer Person oder einem Tier, das Gesundheitsleistungen oder andere gesundheitsbezogene Dienste erhält. Das Beispiel darunter stammt aus der Spezifikation und enthält bewusst viele Sonderfälle: mehrere Namen, eine Adresse, einen Kontakt und eine Erweiterung an der Geburtsangabe.</p>
+<section class="box viewer" id="viewer" data-viewer data-default="patient" data-tab="karte" aria-label="FHIR-Viewer">
+
+<label for="fv-input"><strong>FHIR-Daten einfügen</strong> (JSON oder XML, eine Ressource oder ein Bundle)</label>
+<textarea id="fv-input" rows="8" spellcheck="false" autocomplete="off" placeholder='{ "resourceType": "Patient", … }'></textarea>
+<div class="row">
+<button class="btn primary" id="fv-show" type="button">Anzeigen</button>
+<label class="btn" for="fv-file">Datei wählen</label><input type="file" id="fv-file" accept=".json,.xml,.fhir,application/json,application/fhir+json,application/xml,text/xml" class="visually-hidden">
+<button class="btn" id="fv-clear" type="button">Leeren</button>
+<button class="btn" type="button" data-sample="patient">Patient laden</button><button class="btn" type="button" data-sample="bundle-verweise">Patienten im Bundle</button>
+</div>
+<p class="stand" id="fv-sample-note" hidden></p>
+<div id="fv-status" class="status" role="status" aria-live="polite"></div>
+<div id="fv-out" hidden></div>
+<p class="stand">Die Daten bleiben in Ihrem Browser: Es wird nichts hochgeladen. Nur zur Ansicht, kein Validator, kein Medizinprodukt.</p>
+</section>
+<p class="stand">Beispiel „Patient“: <a href="https://hl7.org/fhir/R4/patient-example.json.html" rel="noopener">Original in der FHIR-Spezifikation R4</a>, Lizenz CC0 1.0. Unverändert bis auf die Formatierung.</p>
+<section class="prose" aria-labelledby="felder"><h2 id="felder">Das Beispiel Feld für Feld</h2>
+<p>Die Tabelle nennt Elemente des Beispiels. Die Werte stehen so in der Beispieldatei, nicht in einer Beispielrechnung.</p>
+<div class="tablewrap"><table><thead><tr><th>Element</th><th>Wert im Beispiel</th><th>Bedeutung</th></tr></thead><tbody><tr><td><code>id</code></td><td><code>&quot;example&quot;</code></td><td>Logische ID der Ressource. Sie ist Teil der Adresse, unter der ein Server sie bereitstellt: <code>[base]/Patient/[id]</code>.</td></tr><tr><td><code>identifier[0].value</code></td><td><code>&quot;12345&quot;</code></td><td>Eine Kennung des Patienten. <code>system</code> bestimmt den Namensraum der Nummer, <code>assigner</code> nennt die ausgebende Stelle, <code>type</code> die Art der Kennung (hier der Code <code>MR</code>).</td></tr><tr><td><code>active</code></td><td><code>true</code></td><td>Ob der Datensatz in Gebrauch ist (nach der Spezifikation: „in active use“). Es sagt nichts über den Gesundheitszustand aus.</td></tr><tr><td><code>name[0]</code></td><td><code>{&quot;use&quot;:&quot;official&quot;,&quot;family&quot;:&quot;Chalmers&quot;,&quot;given&quot;:[&quot;Peter&quot;,&quot;James&quot;]}</code></td><td>Ein <code>HumanName</code>. <code>use</code> unterscheidet hier <code>official</code>, <code>usual</code> und <code>maiden</code>; <code>given</code> ist eine Liste, <code>family</code> ein Text.</td></tr><tr><td><code>name[2].period</code></td><td><code>{&quot;end&quot;:&quot;2002&quot;}</code></td><td>Der Mädchenname ist nur bis 2002 gültig. Einen Namen mit Gültigkeitszeitraum zu markieren, ist der Zweck von <code>period</code>.</td></tr><tr><td><code>telecom[1]</code></td><td><code>{&quot;system&quot;:&quot;phone&quot;,&quot;value&quot;:&quot;(03) 5555 6473&quot;,&quot;use&quot;:&quot;work&quot;,&quot;rank&quot;:1}</code></td><td>Ein <code>ContactPoint</code> mit <code>system</code> (phone), <code>use</code> (work) und <code>rank</code> als Rangfolge.</td></tr><tr><td><code>gender</code></td><td><code>&quot;male&quot;</code></td><td>Administratives Geschlecht für Verwaltungszwecke. Erlaubt sind <code>male</code>, <code>female</code>, <code>other</code> und <code>unknown</code>.</td></tr><tr><td><code>birthDate</code></td><td><code>&quot;1974-12-25&quot;</code></td><td>Ein <code>date</code>: <code>JJJJ</code>, <code>JJJJ-MM</code> oder <code>JJJJ-MM-TT</code>, nicht <code>TT.MM.JJJJ</code>.</td></tr><tr><td><code>_birthDate.extension[0].url</code></td><td><code>&quot;http://hl7.org/fhir/StructureDefinition/patient-birthTime&quot;</code></td><td>Der Unterstrich-Name trägt Zusatzangaben eines einfachen Werts. Hier hängt eine Erweiterung (<code>patient-birthTime</code>) die Uhrzeit der Geburt an das Datum.</td></tr><tr><td><code>deceasedBoolean</code></td><td><code>false</code></td><td>Auswahlelement <code>deceased[x]</code>: Der Name enthält den Datentyp. Hier <code>deceasedBoolean</code>; die Spezifikation nennt als Alternative <code>deceasedDateTime</code>.</td></tr><tr><td><code>address[0].line</code></td><td><code>[&quot;534 Erewhon St&quot;]</code></td><td>Straße und Hausnummer als Liste von Zeilen; daneben stehen <code>city</code>, <code>state</code>, <code>postalCode</code> und ein Freitext in <code>text</code>.</td></tr><tr><td><code>contact[0].name.family</code></td><td><code>&quot;du Marché&quot;</code></td><td>Eine Kontaktperson mit eigenem Namen, Telefon und Adresse (<code>Patient.contact</code>). Der Unterstrichwert <code>_family</code> trägt wieder eine Erweiterung.</td></tr><tr><td><code>managingOrganization.reference</code></td><td><code>&quot;Organization/1&quot;</code></td><td>Ein Verweis auf eine andere Ressource. Als einzelne Datei lässt er sich nicht auflösen; in einem Bundle würde der Viewer zum Eintrag springen.</td></tr></tbody></table></div></section>
+<section class="prose" aria-labelledby="spec"><h2 id="spec">Was die Spezifikation dazu sagt</h2><p>Die Spezifikation führt Patient als normative Ressource (Maturity Level N). Sie beschreibt, dass ein Patient-Datensatz in der Regel von jeder Einrichtung gepflegt wird, die den Patienten behandelt; wird jemand in mehreren Einrichtungen behandelt, kann es daher mehrere Patient-Ressourcen geben. Nicht alle Konzepte sind in der Basisressource enthalten; die Spezifikation nennt als Beispiele Ethnie, Organspende-Status und Staatsangehörigkeit.</p></section>
+<section class="prose" aria-labelledby="probieren"><h2 id="probieren">Im Viewer ausprobieren</h2>
+<p>Ändern Sie das Beispiel im Eingabefeld und klicken Sie auf „Anzeigen“. Beim Erzeugen dieser Seite wurden die folgenden Änderungen mit demselben Code geprüft:</p>
+<ul><li>Setzen Sie <code>"birthDate": "25.12.1974"</code> statt <code>"1974-12-25"</code>. Der Viewer meldet: „birthDate: &quot;25.12.1974&quot; ist kein gültiges FHIR-date (erwartet JJJJ, JJJJ-MM oder JJJJ-MM-TT).“ (Warnung)</li><li>Schreiben Sie <code>"gender": "männlich"</code>. Der Viewer meldet: „Patient.gender: &quot;männlich&quot; steht nicht in der Werteliste (male, female, other, unknown).“ (Warnung)</li></ul>
+<p>Mit dem <a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a> können Sie Namen und Telefonnummern gezielt auswählen, etwa <code>name.where(use='official').given.first()</code>.</p></section>
+<section class="box"><h2>Quellen dieser Seite</h2><ul class="src"><li><a href="https://hl7.org/fhir/R4/patient.html" rel="noopener">FHIR R4: Patient</a></li><li><a href="https://hl7.org/fhir/R4/json.html" rel="noopener">FHIR R4: JSON-Format</a></li></ul></section>
+<section class="box"><h2>Weitere Ressourcen-Beispiele</h2><ul class="cards"><li><a href="/fhir-viewer/fhir-observation-beispiel/">Observation-Beispiel</a><p>Messwerte mit Code, Wert und Einheit</p></li><li><a href="/fhir-viewer/fhir-encounter-beispiel/">Encounter-Beispiel</a><p>Behandlungsfall mit Status und Klasse</p></li><li><a href="/fhir-viewer/fhir-condition-beispiel/">Condition-Beispiel</a><p>Diagnose mit Statusangaben</p></li></ul></section>
+<section class="box"><h2>Weiterlesen</h2><ul class="cards"><li><a href="/fhir-viewer/">Viewer</a><p>JSON oder XML einfügen und sofort ansehen</p></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">FHIR-Bundle anzeigen</a><p>Bundle-Typen, Einträge und Referenzen lesen</p></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a><p>Pfadausdrücke an echten Beispielen ausprobieren</p></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a><p>Ressourcen, JSON/XML, REST und FHIR in Deutschland</p></li></ul></section>
+
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="stand">Zuletzt aktualisiert: <time datetime="2026-10-27">27.10.2026</time></p>
+<ul>
+<li><a href="https://freimoser.de/impressum/">Impressum</a></li>
+<li><a href="/fhir-viewer/datenschutz/">Datenschutz</a></li>
+<li><a href="/fhir-viewer/quellen/">Quellen und Lizenzen</a></li>
+<li><a href="https://freimoser.de/">freimoser.de</a></li>
+<li><a href="https://www.linkedin.com/in/thomas-freimoser/" rel="me noopener">LinkedIn</a></li>
+</ul>
+<p class="disclaimer"><strong>Nur zur Ansicht, kein Medizinprodukt.</strong> Dieser Viewer ist kein Validator und ersetzt weder den offiziellen FHIR-Validator noch eine Profilprüfung. Nicht für Diagnose, Therapie oder Abrechnung verwenden.</p>
+<p class="disclaimer">HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.</p>
+<p class="disclaimer">Open-Source-Baustein: <code>@medplum/core</code> (Apache-2.0, Autor: Medplum) für den FHIRPath-Tester, lokal mitgeliefert. <a href="/fhir-viewer/quellen/">Lizenzen</a>. Gebaut in München / Remote.</p>
+</div></footer>
+<script type="module" src="/fhir-viewer/assets/app.js?v=2c56de7d"></script>
+</body>
+</html>

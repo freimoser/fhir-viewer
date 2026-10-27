@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<script src="/fhir-viewer/assets/menu.js?v=8c5cbecd"></script>
+<title>FHIR Bundle anzeigen: Einträge, Typen und Referenzen lesen</title>
+<meta name="description" content="FHIR-Bundle als JSON oder XML ansehen: Bundle.type, Einträge je Ressourcentyp, anklickbare Referenzen und Regelhinweise (bdl). Im Browser, ohne Upload.">
+<meta name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg">
+<meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Thomas Freimoser">
+<meta name="theme-color" content="#0f3a5f">
+<link rel="canonical" href="https://freimoser.github.io/fhir-viewer/fhir-bundle-anzeigen/">
+<link rel="icon" href="/fhir-viewer/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/fhir-viewer/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="/fhir-viewer/favicon.svg">
+<link rel="apple-touch-icon" href="/fhir-viewer/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FHIR-Viewer">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="FHIR Bundle anzeigen: Einträge, Typen und Referenzen lesen">
+<meta property="og:description" content="FHIR-Bundle als JSON oder XML ansehen: Bundle.type, Einträge je Ressourcentyp, anklickbare Referenzen und Regelhinweise (bdl). Im Browser, ohne Upload.">
+<meta property="og:url" content="https://freimoser.github.io/fhir-viewer/fhir-bundle-anzeigen/">
+<meta property="og:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Viewer für FHIR-Daten: FHIR-Ressourcen und Bundles im Browser lesen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FHIR Bundle anzeigen: Einträge, Typen und Referenzen lesen">
+<meta name="twitter:description" content="FHIR-Bundle als JSON oder XML ansehen: Bundle.type, Einträge je Ressourcentyp, anklickbare Referenzen und Regelhinweise (bdl). Im Browser, ohne Upload.">
+<meta name="twitter:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<link rel="stylesheet" href="/fhir-viewer/assets/styles.css?v=58fcfb48">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIR Bundle anzeigen: Einträge, Typen und Referenzen lesen","description":"FHIR-Bundle als JSON oder XML ansehen: Bundle.type, Einträge je Ressourcentyp, anklickbare Referenzen und Regelhinweise (bdl). Im Browser, ohne Upload.","url":"https://freimoser.github.io/fhir-viewer/fhir-bundle-anzeigen/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FHIR-Viewer","item":"https://freimoser.github.io/fhir-viewer/"},{"@type":"ListItem","position":2,"name":"FHIR-Bundle anzeigen","item":"https://freimoser.github.io/fhir-viewer/fhir-bundle-anzeigen/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/fhir-viewer/"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".14"/><path d="M9 9h14M9 16h9M9 23h12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="23" r="2.4" fill="#ffb454"/></svg><span>FHIR-Viewer</span></a>
+<button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menü öffnen"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+<nav class="nav" id="site-nav" aria-label="Hauptmenü"><ul><li><a href="/fhir-viewer/">Viewer</a></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/" aria-current="page">Bundle anzeigen</a></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a></li></ul></nav>
+</div></header>
+<main id="main" class="wrap">
+
+<p class="crumbs"><a href="/fhir-viewer/">FHIR-Viewer</a> › FHIR-Bundle anzeigen</p>
+<h1>FHIR-Bundle anzeigen und lesen</h1>
+<p class="lead">Ein Bundle ist ein Container für mehrere Ressourcen. Wenn eine FHIR-Datei mit <code>"resourceType": "Bundle"</code> beginnt, steckt der eigentliche Inhalt in <code>entry</code>. Der Viewer zählt die Ressourcen je Typ, listet die Einträge und lässt Sie Referenzen von einem Eintrag zum nächsten anklicken.</p>
+<section class="box viewer" id="viewer" data-viewer data-default="bundle-verweise" data-tab="karte" aria-label="FHIR-Viewer">
+
+<label for="fv-input"><strong>FHIR-Daten einfügen</strong> (JSON oder XML, eine Ressource oder ein Bundle)</label>
+<textarea id="fv-input" rows="8" spellcheck="false" autocomplete="off" placeholder='{ "resourceType": "Patient", … }'></textarea>
+<div class="row">
+<button class="btn primary" id="fv-show" type="button">Anzeigen</button>
+<label class="btn" for="fv-file">Datei wählen</label><input type="file" id="fv-file" accept=".json,.xml,.fhir,application/json,application/fhir+json,application/xml,text/xml" class="visually-hidden">
+<button class="btn" id="fv-clear" type="button">Leeren</button>
+<button class="btn" type="button" data-sample="bundle-verweise">Bundle mit Referenzen</button><button class="btn" type="button" data-sample="bundle-suche">Suchergebnis</button><button class="btn" type="button" data-sample="bundle-transaktion">Transaktion</button>
+</div>
+<p class="stand" id="fv-sample-note" hidden></p>
+<div id="fv-status" class="status" role="status" aria-live="polite"></div>
+<div id="fv-out" hidden></div>
+<p class="stand">Die Daten bleiben in Ihrem Browser: Es wird nichts hochgeladen. Nur zur Ansicht, kein Validator, kein Medizinprodukt.</p>
+</section>
+<p class="stand">Beispiel „Bundle mit Referenzen“: <a href="https://hl7.org/fhir/R4/bundle-references.json.html" rel="noopener">Original in der FHIR-Spezifikation R4</a>, Lizenz CC0 1.0. Unverändert bis auf die Formatierung.</p>
+
+<section class="prose" aria-labelledby="was"><h2 id="was">Wofür es Bundles gibt</h2>
+<p>Nach der Spezifikation fasst ein Bundle Ressourcen zusammen, zum Beispiel als Ergebnis einer Suche, als Versionsverlauf (history), als Nachricht, als Dokument oder als Transaktion, die mehrere Ressourcen auf einem Server in einem Schritt anlegt, ändert oder löscht. Welche Art vorliegt, steht in <code>Bundle.type</code>: <code>document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection</code>. Das Feld ist ein Pflichtfeld (1..1); fehlt es, meldet der Viewer das.</p>
+<p>Ein Bundle ist nicht dasselbe wie <code>contained</code>: Contained-Ressourcen existieren nur im Kontext ihrer Elternressource, Bundle-Einträge können dagegen eigenständig abrufbar sein.</p></section>
+
+<section class="prose" aria-labelledby="lesen"><h2 id="lesen">So lesen Sie ein Bundle im Viewer</h2>
+<ol>
+<li><strong>Kopfzeile:</strong> Neben Format und Ressourcentyp stehen die Zahl der Einträge und <code>type</code>. Im Beispiel oben: 11 Einträge, <code>type: collection</code>. Die „Bundle-Übersicht“ darunter zählt je Ressourcentyp: Patient 4, Observation 7.</li>
+<li><strong>Typ-Filter und Suche:</strong> Ein Klick auf einen Typ blendet die Einträge der anderen Typen aus. Das Suchfeld filtert die Eintragsliste.</li>
+<li><strong>Eintrag wählen:</strong> Karte, Baum und FHIRPath beziehen sich auf den gewählten Eintrag; im FHIRPath-Tab können Sie auch das ganze Bundle auswerten.</li>
+<li><strong>Referenzen folgen:</strong> Ein Verweis führt zum Zieleintrag, mit „← Zurück“ kehren Sie um. Beim Ziel steht unter „Referenziert von“, welche Einträge auf ihn zeigen.</li>
+<li><strong>Hinweise lesen:</strong> Die Liste „Plausibilitätshinweise“ nennt auffällige Stellen; ein Klick auf die Stelle springt zum betroffenen Eintrag.</li>
+</ol></section>
+
+<section class="prose" aria-labelledby="refs"><h2 id="refs">Wie Referenzen aufgelöst werden</h2>
+<p>Eine Referenz wie <code>"reference": "Patient/example"</code> ist ein Verweis, kein Einbetten. Der Viewer sucht das Ziel in dieser Reihenfolge: zuerst einen Eintrag, dessen <code>fullUrl</code> passt (auch eine relative Referenz wird gegen die Basis der <code>fullUrl</code> aufgelöst), bei Versionsangaben passend zur <code>meta.versionId</code>; bei einer Referenz nur mit <code>identifier</code> einen Eintrag mit diesem Identifier; bei <code>#id</code> eine <code>contained</code>-Ressource. Findet er nichts über die <code>fullUrl</code>, versucht er Typ und <code>id</code> und markiert das als Info, weil die Spezifikation dafür nichts festlegt. Externe URLs löst die Seite nicht auf, weil sie keine Netzwerkanfragen stellt; sie erscheinen als Info.</p>
+<p>Zur Einordnung der Referenzarten steht in der Spezifikation: ein Literalverweis (<code>reference</code>) und ein logischer Verweis (<code>identifier</code>) sind beide möglich.</p></section>
+
+<section class="prose" aria-labelledby="regeln"><h2 id="regeln">Welche Bundle-Regeln der Viewer prüft</h2>
+<div class="tablewrap"><table><thead><tr><th>Regel</th><th>Inhalt laut Spezifikation</th></tr></thead><tbody>
+<tr><td>bdl-1</td><td><code>total</code> nur bei searchset oder history</td></tr>
+<tr><td>bdl-3</td><td><code>entry.request</code> Pflicht bei batch, transaction und history, sonst nicht erlaubt</td></tr>
+<tr><td>bdl-4</td><td><code>entry.response</code> Pflicht bei batch-response, transaction-response und history, sonst nicht erlaubt</td></tr>
+<tr><td>bdl-7</td><td><code>fullUrl</code> eindeutig, oder die Einträge unterscheiden sich in <code>meta.versionId</code> (nicht bei history)</td></tr>
+<tr><td>bdl-9, bdl-10</td><td>Ein Dokument braucht einen <code>identifier</code> mit system und value sowie einen <code>timestamp</code></td></tr>
+<tr><td>bdl-11, bdl-12</td><td>Dokument: erste Ressource ist eine Composition; Nachricht: erste Ressource ist ein MessageHeader</td></tr>
+</tbody></table></div>
+<p>Nicht geprüft werden bdl-2, bdl-5 und bdl-8 sowie alle Regeln der enthaltenen Ressourcen. Zusätzlich gibt es eine Warnung, wenn <code>fullUrl</code> außerhalb von transaction und batch fehlt. Der Viewer bleibt damit eine Lesehilfe und ersetzt keine Validierung.</p></section>
+
+<section class="prose" aria-labelledby="beispiele"><h2 id="beispiele">Die drei Bundle-Beispiele</h2>
+<ul>
+<li><strong>Bundle mit Referenzen</strong> (collection): Patient 4, Observation 7 (Anzahl der Einträge). Gut, um Klicks von einer Observation zum Patienten zu üben. Zwei Hinweise (Info): eine Referenz auf einen externen Server und eine, die nur über Typ und <code>id</code> gefunden wird.</li>
+<li><strong>Suchergebnis</strong> (searchset): MedicationRequest 1, Medication 1. Eine MedicationRequest und das Arzneimittel, auf das sie über <code>medicationReference</code> verweist. Der Viewer meldet hier, dass der Patient <code>Patient/347</code> nicht im Bundle liegt: ein Suchergebnis enthält nicht automatisch alle referenzierten Ressourcen.</li>
+<li><strong>Transaktion</strong> (transaction): Patient 5, (nur request) 4, Parameters 1. Jeder Eintrag trägt <code>request</code> mit Methode und URL, etwa <code>POST Patient</code>, <code>PUT Patient/123</code> und <code>DELETE Patient/234</code>; Regel bdl-3 verlangt genau das.</li>
+</ul>
+<div class="samples"><article class="sample"><h3>Bundle mit Referenzen</h3><p>Ein Bundle mit Patienten und Observations; zeigt aufgelöste Referenzen, Versionen und Identifier. 8732 Bytes.</p><button class="btn" type="button" data-sample="bundle-verweise">Beispiel laden</button></article><article class="sample"><h3>Bundle (searchset)</h3><p>Ein kleines Suchergebnis mit MedicationRequest und Medication. 1733 Bytes.</p><button class="btn" type="button" data-sample="bundle-suche">Beispiel laden</button></article><article class="sample"><h3>Bundle (transaction)</h3><p>Eine Transaktion mit mehreren Patienten und request-Angaben. 4807 Bytes.</p><button class="btn" type="button" data-sample="bundle-transaktion">Beispiel laden</button></article></div></section>
+<section class="prose"><h2>Passend dazu</h2><p>Mit dem <a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a> zählen Sie zum Beispiel die Observations eines Bundles. Wie Ressourcen allgemein aufgebaut sind, steht unter <a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a>.</p></section>
+<section class="box"><h2>Quellen dieser Seite</h2><ul class="src"><li><a href="https://hl7.org/fhir/R4/bundle.html" rel="noopener">FHIR R4: Bundle</a></li><li><a href="https://hl7.org/fhir/R4/references.html" rel="noopener">FHIR R4: References</a></li><li><a href="https://hl7.org/fhir/R4/resource.html" rel="noopener">FHIR R4: Resource</a></li></ul></section>
+<section class="box"><h2>Weiterlesen</h2><ul class="cards"><li><a href="/fhir-viewer/">Viewer</a><p>JSON oder XML einfügen und sofort ansehen</p></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a><p>Pfadausdrücke an echten Beispielen ausprobieren</p></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a><p>Ressourcen, JSON/XML, REST und FHIR in Deutschland</p></li></ul></section>
+
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="stand">Zuletzt aktualisiert: <time datetime="2026-10-27">27.10.2026</time></p>
+<ul>
+<li><a href="https://freimoser.de/impressum/">Impressum</a></li>
+<li><a href="/fhir-viewer/datenschutz/">Datenschutz</a></li>
+<li><a href="/fhir-viewer/quellen/">Quellen und Lizenzen</a></li>
+<li><a href="https://freimoser.de/">freimoser.de</a></li>
+<li><a href="https://www.linkedin.com/in/thomas-freimoser/" rel="me noopener">LinkedIn</a></li>
+</ul>
+<p class="disclaimer"><strong>Nur zur Ansicht, kein Medizinprodukt.</strong> Dieser Viewer ist kein Validator und ersetzt weder den offiziellen FHIR-Validator noch eine Profilprüfung. Nicht für Diagnose, Therapie oder Abrechnung verwenden.</p>
+<p class="disclaimer">HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.</p>
+<p class="disclaimer">Open-Source-Baustein: <code>@medplum/core</code> (Apache-2.0, Autor: Medplum) für den FHIRPath-Tester, lokal mitgeliefert. <a href="/fhir-viewer/quellen/">Lizenzen</a>. Gebaut in München / Remote.</p>
+</div></footer>
+<script type="module" src="/fhir-viewer/assets/app.js?v=2c56de7d"></script>
+</body>
+</html>

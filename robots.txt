@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# KI-Crawler dürfen die öffentlichen Seiten lesen
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://freimoser.github.io/fhir-viewer/sitemap.xml

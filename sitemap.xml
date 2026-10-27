@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://freimoser.github.io/fhir-viewer/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://freimoser.github.io/fhir-viewer/fhir-bundle-anzeigen/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://freimoser.github.io/fhir-viewer/fhirpath-tester/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://freimoser.github.io/fhir-viewer/was-ist-fhir/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://freimoser.github.io/fhir-viewer/fhir-patient-beispiel/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://freimoser.github.io/fhir-viewer/fhir-observation-beispiel/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://freimoser.github.io/fhir-viewer/fhir-encounter-beispiel/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://freimoser.github.io/fhir-viewer/fhir-condition-beispiel/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://freimoser.github.io/fhir-viewer/quellen/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://freimoser.github.io/fhir-viewer/datenschutz/</loc><lastmod>2026-10-27</lastmod></url>
+</urlset>

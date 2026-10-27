@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<script src="/fhir-viewer/assets/menu.js?v=8c5cbecd"></script>
+<title>Datenschutz – Viewer für FHIR-Daten</title>
+<meta name="description" content="Datenschutzhinweise des Viewers für FHIR-Daten: Eingaben bleiben im Browser, keine Cookies, keine Analyse, Hosting über GitHub Pages.">
+<meta name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg">
+<meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Thomas Freimoser">
+<meta name="theme-color" content="#0f3a5f">
+<link rel="canonical" href="https://freimoser.github.io/fhir-viewer/datenschutz/">
+<link rel="icon" href="/fhir-viewer/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/fhir-viewer/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="/fhir-viewer/favicon.svg">
+<link rel="apple-touch-icon" href="/fhir-viewer/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FHIR-Viewer">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Datenschutz – Viewer für FHIR-Daten">
+<meta property="og:description" content="Datenschutzhinweise des Viewers für FHIR-Daten: Eingaben bleiben im Browser, keine Cookies, keine Analyse, Hosting über GitHub Pages.">
+<meta property="og:url" content="https://freimoser.github.io/fhir-viewer/datenschutz/">
+<meta property="og:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Viewer für FHIR-Daten: FHIR-Ressourcen und Bundles im Browser lesen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Datenschutz – Viewer für FHIR-Daten">
+<meta name="twitter:description" content="Datenschutzhinweise des Viewers für FHIR-Daten: Eingaben bleiben im Browser, keine Cookies, keine Analyse, Hosting über GitHub Pages.">
+<meta name="twitter:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
+<link rel="stylesheet" href="/fhir-viewer/assets/styles.css?v=58fcfb48">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FHIR-Viewer","item":"https://freimoser.github.io/fhir-viewer/"},{"@type":"ListItem","position":2,"name":"Datenschutz","item":"https://freimoser.github.io/fhir-viewer/datenschutz/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt</a>
+<header class="site-head"><div class="wrap">
+<a class="brand" href="/fhir-viewer/"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#fff" fill-opacity=".14"/><path d="M9 9h14M9 16h9M9 23h12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="23" r="2.4" fill="#ffb454"/></svg><span>FHIR-Viewer</span></a>
+<button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menü öffnen"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+<nav class="nav" id="site-nav" aria-label="Hauptmenü"><ul><li><a href="/fhir-viewer/">Viewer</a></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">Bundle anzeigen</a></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a></li></ul></nav>
+</div></header>
+<main id="main" class="wrap">
+
+<p class="crumbs"><a href="/fhir-viewer/">FHIR-Viewer</a> › Datenschutz</p>
+<h1>Datenschutz</h1>
+<p class="lead">Kurz gesagt: Die Seite wertet Ihre FHIR-Daten im Browser aus und überträgt sie nicht. Hier stehen die Details.</p>
+<section class="prose"><h2>Verantwortlicher</h2>
+<p>Thomas Freimoser, München / Remote. Kontakt: <a href="mailto:kontakt@freimoser.de">kontakt@freimoser.de</a>. Vollständige Angaben im <a href="https://freimoser.de/impressum/">Impressum</a>.</p></section>
+<section class="prose"><h2>Ihre Eingaben und Dateien</h2>
+<p>FHIR-Daten, die Sie einfügen oder als Datei öffnen, werden im Browser ausgewertet. Der Seitencode enthält keine Funktion, die sie versendet, und eine Content-Security-Policy (<code>connect-src 'none'</code>) verbietet dem Seitencode Netzwerkanfragen. Beim ersten Auswerten eines FHIRPath-Ausdrucks lädt die Seite einen weiteren Programmteil von derselben Adresse nach; Ihre Daten sind darin nicht enthalten. Der Download einer Ressource erzeugt die Datei lokal in Ihrem Browser.</p>
+<p>Eingegebene Daten liegen bis zum Schließen oder Neuladen der Seite im Arbeitsspeicher Ihres Browsers. Die Seite speichert sie nicht in localStorage oder Cookies. Verwenden Sie bitte Testdaten oder anonymisierte Daten.</p></section>
+<section class="prose"><h2>Hosting</h2>
+<p>Die Seite wird über GitHub Pages (GitHub Inc.) ausgeliefert. Beim Aufruf verarbeitet GitHub technisch notwendige Verbindungsdaten wie IP-Adresse, Zeitpunkt und angeforderte Datei, um die Seite bereitzustellen und abzusichern (Art. 6 Abs. 1 lit. f DSGVO). Details: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Datenschutzerklärung von GitHub</a>.</p></section>
+<section class="prose"><h2>Cookies, Analyse, Schriften</h2>
+<p>Die Seite setzt keine Cookies und nutzt keine Reichweitenmessung. Schriften, Skripte und Bilder kommen von derselben Adresse; es gibt keine Einbindung von Drittanbietern wie CDNs oder Schriftdiensten. Die Links zu Quellen und zu freimoser.de, LinkedIn und GitHub sind normale Verweise: Erst wenn Sie sie anklicken, verbinden Sie sich mit dem jeweiligen Anbieter.</p></section>
+<section class="prose"><h2>Google Search Console und Bing Webmaster Tools</h2>
+<p>Die Seite enthält Bestätigungs-Meta-Tags für diese Dienste und eine Schlüsseldatei für IndexNow. Dabei werden keine Daten von Besucherinnen und Besuchern übertragen.</p></section>
+<section class="prose"><h2>Ihre Rechte</h2>
+<p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch sowie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren.</p></section>
+<p class="stand">Stand: 27.10.2026</p>
+
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="stand">Zuletzt aktualisiert: <time datetime="2026-10-27">27.10.2026</time></p>
+<ul>
+<li><a href="https://freimoser.de/impressum/">Impressum</a></li>
+<li><a href="/fhir-viewer/datenschutz/">Datenschutz</a></li>
+<li><a href="/fhir-viewer/quellen/">Quellen und Lizenzen</a></li>
+<li><a href="https://freimoser.de/">freimoser.de</a></li>
+<li><a href="https://www.linkedin.com/in/thomas-freimoser/" rel="me noopener">LinkedIn</a></li>
+</ul>
+<p class="disclaimer"><strong>Nur zur Ansicht, kein Medizinprodukt.</strong> Dieser Viewer ist kein Validator und ersetzt weder den offiziellen FHIR-Validator noch eine Profilprüfung. Nicht für Diagnose, Therapie oder Abrechnung verwenden.</p>
+<p class="disclaimer">HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.</p>
+<p class="disclaimer">Open-Source-Baustein: <code>@medplum/core</code> (Apache-2.0, Autor: Medplum) für den FHIRPath-Tester, lokal mitgeliefert. <a href="/fhir-viewer/quellen/">Lizenzen</a>. Gebaut in München / Remote.</p>
+</div></footer>
+</body>
+</html>

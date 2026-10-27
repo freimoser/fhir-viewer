@@ -26,4 +26,4 @@ Optional: `EDITORIAL_LINK=1 npm run build` schaltet den redaktionellen Verweis a
 ## Lizenz
 MIT (eigener Code), siehe `LICENSE`. Drittanbieter: `THIRD-PARTY-LICENSES` (`@medplum/core`, Apache-2.0). Beispieldaten: CC0 1.0 (FHIR-Spezifikation). Quellen: `quellen.md`.
 
-HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International. Dieses Werkzeug ist ein unabhängiges Projekt und wird von HL7 International weder bereitgestellt noch empfohlen.
+HL7® und FHIR® sind eingetragene Marken von Health Level Seven International. Dieses Werkzeug ist ein unabhängiges Projekt und wird von HL7 International weder bereitgestellt noch empfohlen.

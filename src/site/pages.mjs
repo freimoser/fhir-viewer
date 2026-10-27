@@ -5,7 +5,7 @@ import { parseXml } from "../lib/xml.mjs";
 import { buildModel, checkModel } from "../lib/model.mjs";
 import { runFhirPath } from "../lib/fhirpath.mjs";
 import { CARD_FIELDS } from "../lib/cards.mjs";
-import { NAME, SHORT, SLUG, BASE, SITE, LASTMOD, AUTHOR, EDITORIAL, EDITORIAL_LINK, DEFINITION, DISCLAIMER_TM } from "./config.mjs";
+import { NAME, SHORT, SLUG, BASE, SITE, LASTMOD, AUTHOR, EDITORIAL, EDITORIAL_LINK, DEFINITION, DISCLAIMER_TM, TM_BELEG } from "./config.mjs";
 import { esc, href, url, page, crumbs, breadcrumbLD, PERSON_LD, viewerBlock, toolsBlock, aboutBlock } from "./layout.mjs";
 import { SRC, srcList, DE_FACTS, FAQ } from "./content.mjs";
 
@@ -503,7 +503,7 @@ ${LOINC_NOTE}
 <section class="prose"><h2>Mitgelieferte Software</h2>
 <p><code>@medplum/core</code> (Version 5.2.9, <a href="https://www.apache.org/licenses/LICENSE-2.0" rel="noopener">Apache-2.0</a>, Autor: Medplum) liefert <code>evalFhirPath</code> für den FHIRPath-Tester. Die Bibliothek wurde mit esbuild gebündelt; Lizenztext und Hinweise stehen in der Datei <a href="${href("THIRD-PARTY-LICENSES")}">THIRD-PARTY-LICENSES</a>. Weitere Laufzeitbausteine von Dritten gibt es nicht; es gibt keine CDN-Einbindung und keine externen Schriften.</p>
 <p>Der Quellcode dieses Projekts liegt im <a href="https://github.com/freimoser/${SLUG}">GitHub-Repository</a> (dort auch die Datei <code>quellen.md</code>).</p></section>
-<section class="prose"><h2>Marken</h2><p>${esc(DISCLAIMER_TM)}</p></section>
+<section class="prose"><h2>Marken</h2><p>${esc(DISCLAIMER_TM)}</p><p>${esc(TM_BELEG)}</p></section>
 ${others(path)}
 `;
     pages.push({ path, title, desc, ld: webPageLD(path, title, desc, crumbItems), body, h1: "Quellen und Lizenzen", lastmod: LASTMOD, noViewer: true });

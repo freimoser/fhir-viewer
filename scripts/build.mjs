@@ -141,6 +141,8 @@ Deutsche Quellen abgerufen am ${LASTMOD}. Nicht als Quelle verwendet wurden Seit
 
 ## Marken
 ${cfg.DISCLAIMER_TM}
+
+${cfg.TM_BELEG}
 `);
 
 // ---------- 6. Symbole und og:image ----------

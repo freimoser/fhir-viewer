@@ -15,9 +15,9 @@ export const EDITORIAL = { name: "FleXChange Medical", url: "https://flexchange-
 
 // Schwesterprojekte. Optionale Einträge werden nur gerendert, wenn die Seite beim Build mit HTTP 200 antwortet.
 export const TOOLS = [
-  { id: "ldt-bdt-viewer", name: "LDT & BDT Viewer", desc: "LDT- und BDT-Dateien (Labor- und Praxisdaten) im Browser lesen", url: "https://freimoser.github.io/ldt-bdt-viewer/" },
-  { id: "gdt-viewer", name: "GDT Viewer", desc: "GDT-Dateien im Browser lesen und Testdaten erzeugen", url: "https://freimoser.github.io/gdt-viewer/" },
-  { id: "dicom-viewer", name: "DICOM Viewer", desc: "Röntgen-, CT- und MRT-Bilder im Browser ansehen", url: "https://freimoser.github.io/dicom-viewer/" },
+  { id: "ldt-bdt-viewer", name: "LDT & BDT Viewer", anchor: "Laborwerte aus LDT- und BDT-Dateien lesen", desc: "LDT- und BDT-Dateien (Labor- und Praxisdaten) im Browser lesen", url: "https://freimoser.github.io/ldt-bdt-viewer/" },
+  { id: "gdt-viewer", name: "GDT Viewer", anchor: "GDT-Dateien öffnen und Testdaten erzeugen", desc: "GDT-Dateien im Browser lesen und Testdaten erzeugen", url: "https://freimoser.github.io/gdt-viewer/" },
+  { id: "dicom-viewer", name: "DICOM Viewer", anchor: "DICOM-Dateien im Browser anzeigen", desc: "Röntgen-, CT- und MRT-Bilder im Browser ansehen", url: "https://freimoser.github.io/dicom-viewer/" },
   { id: "hl7v2-viewer", name: "HL7 v2 Viewer", desc: "HL7-v2-Nachrichten im Browser lesen", url: "https://freimoser.github.io/hl7v2-viewer/", optional: true },
   { id: "cda-viewer", name: "CDA Viewer", desc: "Klinische Dokumente im Browser lesen", url: "https://freimoser.github.io/cda-viewer/", optional: true },
 ];
@@ -29,7 +29,8 @@ export const NAV = [
   { href: "was-ist-fhir/", label: "Was ist FHIR?" },
 ];
 
-export const DISCLAIMER_TM = "HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International. Dieses Werkzeug ist ein unabhängiges Projekt und wird von HL7 International weder bereitgestellt noch empfohlen.";
+export const TM_BELEG = "Nach der Lizenzseite der FHIR-Spezifikation (https://hl7.org/fhir/license.html) sind HL7®, HEALTH LEVEL SEVEN® und FHIR® Marken von Health Level Seven International, eingetragen beim United States Patent and Trademark Office.";
+export const DISCLAIMER_TM = "HL7® und FHIR® sind eingetragene Marken von Health Level Seven International. Dieses Werkzeug ist ein unabhängiges Projekt und wird von HL7 International weder bereitgestellt noch empfohlen.";
 export const DEFINITION = "FHIR (Fast Healthcare Interoperability Resources) ist ein Standard von HL7 International, der Gesundheitsdaten als Ressourcen wie Patient, Observation oder Encounter beschreibt; sie lassen sich als JSON oder XML über REST-Schnittstellen austauschen.";
 
 // Redaktioneller Verweis auf den Anbieter: standardmäßig AUS, bis die Formulierung freigegeben ist.

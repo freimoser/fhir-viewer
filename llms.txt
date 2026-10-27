@@ -28,4 +28,4 @@ Eine Plausibilitätsprüfung deckt nur ausgewählte Regeln ab (Syntax, resourceT
 - [LinkedIn Thomas Freimoser](https://www.linkedin.com/in/thomas-freimoser/)
 
 ## Hinweis zu Marken
-HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International. Dieses Werkzeug ist ein unabhängiges Projekt und wird von HL7 International weder bereitgestellt noch empfohlen.
+HL7® und FHIR® sind eingetragene Marken von Health Level Seven International. Dieses Werkzeug ist ein unabhängiges Projekt und wird von HL7 International weder bereitgestellt noch empfohlen.

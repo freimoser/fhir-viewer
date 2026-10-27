@@ -88,7 +88,7 @@ export function toolsBlock(tools, variant = "home") {
   const sisters = ["cda-viewer", "hl7v2-viewer"].map((id) => tools.find((t) => t.id === id)).filter(Boolean);
   const rest = variant === "home" ? tools.filter((t) => !["cda-viewer", "hl7v2-viewer"].includes(t.id)) : [];
   const li = (t, name, desc) => `<li><a href="${t.url}">${esc(name)}</a><p>${esc(desc)}</p></li>`;
-  const items = sisters.map((t) => li(t, v[t.id][0], v[t.id][1])).concat(rest.map((t) => li(t, t.name, t.desc))).join("");
+  const items = sisters.map((t) => li(t, v[t.id][0], v[t.id][1])).concat(rest.map((t) => li(t, t.anchor || t.name, t.desc))).join("");
   return `<section class="box" aria-labelledby="weitere"><h2 id="weitere">Weitere Werkzeuge</h2>
 <p>${esc(v.intro)}</p>
 <ul class="cards">${items}</ul></section>

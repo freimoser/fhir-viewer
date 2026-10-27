@@ -21,8 +21,8 @@ ${crumbs([{ href: href(""), label: SHORT }, { label: "Datenschutz" }])}
 <p>Eingegebene Daten liegen bis zum Schließen oder Neuladen der Seite im Arbeitsspeicher Ihres Browsers. Die Seite speichert sie nicht in localStorage oder Cookies. Verwenden Sie bitte Testdaten oder anonymisierte Daten.</p></section>
 <section class="prose"><h2>Hosting</h2>
 <p>Diese Seite wird über GitHub Pages ausgeliefert. Beim Aufruf verarbeitet der Hoster technisch bedingt die IP-Adresse der Besucher. Wir erhalten diese Daten nicht und speichern keine personenbezogenen Daten von Ihnen. Näheres steht in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Datenschutzerklärung von GitHub</a>.</p></section>
-<section class="prose"><h2>Cookies, Analyse, Schriften</h2>
-<p>Die Seite setzt keine Cookies und nutzt keine Reichweitenmessung. Schriften, Skripte und Bilder kommen von derselben Adresse; es gibt keine Einbindung von Drittanbietern wie CDNs oder Schriftdiensten. Die Links zu Quellen und zu freimoser.de, LinkedIn und GitHub sind normale Verweise: Erst wenn Sie sie anklicken, verbinden Sie sich mit dem jeweiligen Anbieter.</p></section>
+<section class="prose"><h2>Keine externen Ressourcen</h2>
+<p>Der Viewer selbst lädt keine externen Ressourcen: keine Reichweitenmessung, keine Schriften, Skripte oder Bilder von Dritten und keine Einbindung sozialer Netzwerke. Die Seite setzt keine Cookies. Links zu anderen Seiten (zum Beispiel zu den Quellen, zu freimoser.de, LinkedIn und GitHub) laden erst beim Anklicken; dann verbinden Sie sich mit dem jeweiligen Anbieter.</p></section>
 <section class="prose"><h2>Google Search Console und Bing Webmaster Tools</h2>
 <p>Die Seite enthält Bestätigungs-Meta-Tags für diese Dienste und eine Schlüsseldatei für IndexNow. Dabei werden keine Daten von Besucherinnen und Besuchern übertragen.</p></section>
 <p class="stand">Stand: ${LASTMOD.split("-").reverse().join(".")}</p>

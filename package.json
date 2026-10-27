@@ -1,0 +1,21 @@
+{
+  "name": "fhir-viewer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Viewer für FHIR-Daten im Browser (JSON und XML, Bundles, FHIRPath). Läuft vollständig lokal.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/",
+    "check": "node scripts/check.mjs",
+    "e2e": "node scripts/e2e.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "author": "Thomas Freimoser",
+  "license": "MIT",
+  "devDependencies": {
+    "@medplum/core": "5.2.9",
+    "esbuild": "^0.28.2",
+    "puppeteer-core": "^24.43.1"
+  }
+}

@@ -130,6 +130,9 @@ ${sampleRows}
 ## Fachquellen (für die Texte geöffnet und gelesen)
 ${Object.values(SRC).map((s) => `- ${s.label}: ${s.url}`).join("\n")}
 
+## LOINC-Hinweis
+This material contains content from LOINC (http://loinc.org). LOINC is copyright © Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at http://loinc.org/license. LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
+
 Deutsche Quellen abgerufen am ${LASTMOD}. Nicht als Quelle verwendet wurden Seiten, die nur in Suchergebnissen gesehen, aber nicht geöffnet wurden.
 
 ## Software

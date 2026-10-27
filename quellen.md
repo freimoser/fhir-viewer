@@ -35,7 +35,11 @@ Alle Beispiele stammen aus der FHIR-Spezifikation R4 (4.0.1), die unter CC0 1.0 
 - KBV: Medizinische Informationsobjekte (MIO): https://hub.kbv.de/site/mio
 - gematik: ISiK Basis 6.0.0: https://gemspec.gematik.de/ig/fhir/isik/basis/6.0.0/index.html
 - HL7 Deutschland: Technisches Komitee FHIR: https://www.hl7.de/technische-komitees/fhir/
+- LOINC-Lizenz (Regenstrief Institute): https://loinc.org/license/
 - Medplum (Apache-2.0): https://github.com/medplum/medplum
+
+## LOINC-Hinweis
+This material contains content from LOINC (http://loinc.org). LOINC is copyright © Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at http://loinc.org/license. LOINC® is a registered United States trademark of Regenstrief Institute, Inc.
 
 Deutsche Quellen abgerufen am 2026-10-27. Nicht als Quelle verwendet wurden Seiten, die nur in Suchergebnissen gesehen, aber nicht geöffnet wurden.
 

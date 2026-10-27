@@ -22,6 +22,7 @@ Eine Plausibilitätsprüfung deckt nur ausgewählte Regeln ab (Syntax, resourceT
 - [LDT & BDT Viewer](https://freimoser.github.io/ldt-bdt-viewer/): LDT- und BDT-Dateien (Labor- und Praxisdaten) im Browser lesen
 - [GDT Viewer](https://freimoser.github.io/gdt-viewer/): GDT-Dateien im Browser lesen und Testdaten erzeugen
 - [DICOM Viewer](https://freimoser.github.io/dicom-viewer/): Röntgen-, CT- und MRT-Bilder im Browser ansehen
+- [HL7 v2 Viewer](https://freimoser.github.io/hl7v2-viewer/): HL7-v2-Nachrichten im Browser lesen
 - [CDA Viewer](https://freimoser.github.io/cda-viewer/): Klinische Dokumente im Browser lesen
 - [Portfolio Thomas Freimoser](https://freimoser.de/)
 - [LinkedIn Thomas Freimoser](https://www.linkedin.com/in/thomas-freimoser/)

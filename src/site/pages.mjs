@@ -341,6 +341,9 @@ ${others(path)}
   }
 
   // ---------------- Ressourcen-Beispiele ----------------
+  const LOINC_NOTE = `<section class="box" aria-labelledby="loinc"><h2 id="loinc">LOINC-Hinweis</h2>
+<p lang="en">This material contains content from LOINC (<a href="https://loinc.org/" rel="noopener">http://loinc.org</a>). LOINC is copyright © Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at <a href="https://loinc.org/license/" rel="noopener">http://loinc.org/license</a>. LOINC® is a registered United States trademark of Regenstrief Institute, Inc.</p>
+<p>Einige Beispiele enthalten LOINC-Codes mit Anzeigenamen aus der FHIR-Spezifikation. Die LOINC-Lizenz (Abschnitt 10) sieht diesen englischen Hinweis für Produkte vor, die LOINC-Inhalte enthalten.</p></section>`;
   const resPage = async (cfg) => {
     const crumbItems = [{ label: SHORT, url: SITE }, { label: cfg.crumb, url: url(cfg.path) }];
     const res = J(cfg.sample);
@@ -359,6 +362,7 @@ ${fieldTable(cfg.rows, res)}</section>
 ${experiments(cfg.experiments(viewerHints))}
 <p>${cfg.fpHint ? cfg.fpHint : ""}</p></section>
 <section class="box"><h2>Quellen dieser Seite</h2>${srcList([cfg.src, "json"])}</section>
+${cfg.loinc ? LOINC_NOTE : ""}
 <section class="box"><h2>Weitere Ressourcen-Beispiele</h2><ul class="cards">${cfg.more.map(([p, t, d]) => `<li><a href="${href(p)}">${esc(t)}</a><p>${esc(d)}</p></li>`).join("")}</ul></section>
 ${others("__")}
 `;
@@ -405,9 +409,9 @@ ${others("__")}
   });
 
   await resPage({
-    path: "fhir-observation-beispiel/", sample: "observation", src: "observation", crumb: "FHIR-Observation-Beispiel",
+    path: "fhir-observation-beispiel/", loinc: true, sample: "observation", src: "observation", crumb: "FHIR-Observation-Beispiel",
     title: "FHIR Observation Beispiel: Gewicht und Blutdruck als JSON erklärt",
-    desc: "FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Körpergewicht und Blutdruck erklärt, mit Viewer. Beispiele aus der Spezifikation (CC0).",
+    desc: "FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Gewicht und Blutdruck erklärt, mit Viewer. Beispiele: Spezifikation, CC0.",
     h1: "FHIR-Observation-Beispiel: Messwerte als JSON lesen", h1plain: "FHIR-Observation-Beispiel: Messwerte als JSON lesen",
     lead: "Observation ist die Ressource für Messungen und einfache Feststellungen zu einem Patienten oder Gerät, zum Beispiel Vitalwerte wie Körpergewicht und Blutdruck oder Laborwerte. Hier das Körpergewicht; den Blutdruck mit zwei Teilwerten laden Sie über die Schaltfläche „Blutdruck“.",
     buttons: [sampleBtn("observation", "Körpergewicht"), sampleBtn("blutdruck", "Blutdruck")],
@@ -432,7 +436,7 @@ ${others("__")}
 
   await resPage({
     path: "fhir-encounter-beispiel/", sample: "encounter", src: "encounter", crumb: "FHIR-Encounter-Beispiel",
-    title: "FHIR Encounter Beispiel (JSON): Aufenthalt und Kontakt erklärt",
+    title: "FHIR Encounter Beispiel (JSON): Behandlungsfall erklärt",
     desc: "FHIR-Encounter-Beispiel als JSON: status, class und subject des kleinsten sinnvollen Behandlungsfalls erklärt, mit Viewer. Beispiel aus der Spezifikation (CC0).",
     h1: "FHIR-Encounter-Beispiel: Behandlungsfall als JSON", h1plain: "FHIR-Encounter-Beispiel: Behandlungsfall als JSON",
     lead: "Ein Encounter beschreibt nach der Spezifikation eine Interaktion zwischen Patient und Behandelnden, in der Gesundheitsleistungen erbracht oder der Gesundheitszustand beurteilt wird. Das Beispiel ist das kürzeste der Spezifikation: drei Elemente.",
@@ -455,7 +459,7 @@ ${others("__")}
   await resPage({
     path: "fhir-condition-beispiel/", sample: "condition", src: "condition", crumb: "FHIR-Condition-Beispiel",
     title: "FHIR Condition Beispiel (JSON): Diagnose-Ressource erklärt",
-    desc: "FHIR-Condition-Beispiel als JSON: clinicalStatus, verificationStatus, category, code, bodySite und onset einer Diagnose erklärt. Beispiel aus der Spezifikation (CC0).",
+    desc: "FHIR-Condition-Beispiel als JSON: clinicalStatus, verificationStatus, category, code, bodySite und onset erklärt. Beispiel: Spezifikation, CC0.",
     h1: "FHIR-Condition-Beispiel: Diagnose als JSON lesen", h1plain: "FHIR-Condition-Beispiel: Diagnose als JSON lesen",
     lead: "Condition beschreibt laut Spezifikation eine klinische Bedingung, ein Problem oder eine Diagnose, die so relevant geworden ist, dass sie festgehalten wird. Das Beispiel ist eine aktive, bestätigte Verbrennung am linken Ohr. Codierungen aus SNOMED CT wurden entfernt; der Freitext in <code>code.text</code> trägt die Aussage.",
     buttons: [sampleBtn("condition", "Condition laden")],
@@ -493,6 +497,7 @@ ${crumbs([{ href: href(""), label: SHORT }, { label: "Quellen und Lizenzen" }])}
 <div class="tablewrap"><table><thead><tr><th>Beispiel</th><th>Größe</th><th>Original</th><th>Änderung</th></tr></thead><tbody>${SAMPLES.map((s) => `<tr><td>${esc(s.title)}</td><td>${s.bytes} Bytes</td><td><a href="${s.url}" rel="noopener">${esc(s.url.replace("https://", ""))}</a></td><td>${s.removedSnomed ? s.removedSnomed + " SNOMED-CT-Codierung(en) bzw. Narrativ entfernt" : "nur Formatierung"}</td></tr>`).join("")}</tbody></table></div></section>
 <section class="prose"><h2>Fachquellen</h2><ul class="src">${Object.values(SRC).filter((s) => s !== SRC.medplum).map((s) => `<li><a href="${s.url}" rel="noopener">${s.label}</a></li>`).join("")}</ul>
 <p>Die deutschen Quellen wurden am ${LASTMOD.split("-").reverse().join(".")} abgerufen. Ihr Stand kann sich seitdem geändert haben.</p></section>
+${LOINC_NOTE}
 <section class="prose"><h2>Mitgelieferte Software</h2>
 <p><code>@medplum/core</code> (Version 5.2.9, <a href="https://www.apache.org/licenses/LICENSE-2.0" rel="noopener">Apache-2.0</a>, Medplum, hello@medplum.com) liefert <code>evalFhirPath</code> für den FHIRPath-Tester. Die Bibliothek wurde mit esbuild gebündelt; Lizenztext und Hinweise stehen in der Datei <a href="${href("THIRD-PARTY-LICENSES")}">THIRD-PARTY-LICENSES</a>. Weitere Laufzeitbausteine von Dritten gibt es nicht; es gibt keine CDN-Einbindung und keine externen Schriften.</p>
 <p>Der Quellcode dieses Projekts liegt im <a href="https://github.com/freimoser/${SLUG}">GitHub-Repository</a> (dort auch die Datei <code>quellen.md</code>).</p></section>

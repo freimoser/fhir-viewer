@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <script src="/fhir-viewer/assets/menu.js?v=8c5cbecd"></script>
 <title>FHIR Condition Beispiel (JSON): Diagnose-Ressource erklärt</title>
-<meta name="description" content="FHIR-Condition-Beispiel als JSON: clinicalStatus, verificationStatus, category, code, bodySite und onset einer Diagnose erklärt. Beispiel aus der Spezifikation (CC0).">
+<meta name="description" content="FHIR-Condition-Beispiel als JSON: clinicalStatus, verificationStatus, category, code, bodySite und onset erklärt. Beispiel: Spezifikation, CC0.">
 <meta name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg">
 <meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="FHIR-Viewer">
 <meta property="og:locale" content="de_DE">
 <meta property="og:title" content="FHIR Condition Beispiel (JSON): Diagnose-Ressource erklärt">
-<meta property="og:description" content="FHIR-Condition-Beispiel als JSON: clinicalStatus, verificationStatus, category, code, bodySite und onset einer Diagnose erklärt. Beispiel aus der Spezifikation (CC0).">
+<meta property="og:description" content="FHIR-Condition-Beispiel als JSON: clinicalStatus, verificationStatus, category, code, bodySite und onset erklärt. Beispiel: Spezifikation, CC0.">
 <meta property="og:url" content="https://freimoser.github.io/fhir-viewer/fhir-condition-beispiel/">
 <meta property="og:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -29,10 +29,10 @@
 <meta property="og:image:alt" content="Viewer für FHIR-Daten: FHIR-Ressourcen und Bundles im Browser lesen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="FHIR Condition Beispiel (JSON): Diagnose-Ressource erklärt">
-<meta name="twitter:description" content="FHIR-Condition-Beispiel als JSON: clinicalStatus, verificationStatus, category, code, bodySite und onset einer Diagnose erklärt. Beispiel aus der Spezifikation (CC0).">
+<meta name="twitter:description" content="FHIR-Condition-Beispiel als JSON: clinicalStatus, verificationStatus, category, code, bodySite und onset erklärt. Beispiel: Spezifikation, CC0.">
 <meta name="twitter:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
 <link rel="stylesheet" href="/fhir-viewer/assets/styles.css?v=58fcfb48">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIR Condition Beispiel (JSON): Diagnose-Ressource erklärt","description":"FHIR-Condition-Beispiel als JSON: clinicalStatus, verificationStatus, category, code, bodySite und onset einer Diagnose erklärt. Beispiel aus der Spezifikation (CC0).","url":"https://freimoser.github.io/fhir-viewer/fhir-condition-beispiel/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIR Condition Beispiel (JSON): Diagnose-Ressource erklärt","description":"FHIR-Condition-Beispiel als JSON: clinicalStatus, verificationStatus, category, code, bodySite und onset erklärt. Beispiel: Spezifikation, CC0.","url":"https://freimoser.github.io/fhir-viewer/fhir-condition-beispiel/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FHIR-Viewer","item":"https://freimoser.github.io/fhir-viewer/"},{"@type":"ListItem","position":2,"name":"FHIR-Condition-Beispiel","item":"https://freimoser.github.io/fhir-viewer/fhir-condition-beispiel/"}]}</script>
 </head>
 <body>
@@ -72,6 +72,7 @@
 <ul><li>Setzen Sie in <code>verificationStatus</code> den Code <code>confirmed</code> auf <code>entered-in-error</code>, lassen Sie <code>clinicalStatus</code> stehen. Der Viewer meldet: „clinicalStatus darf bei verificationStatus &quot;entered-in-error&quot; nicht vorkommen (Regel con-5).“ (Warnung)</li><li>Löschen Sie das Feld <code>subject</code>. Der Viewer meldet: „Pflichtfeld &quot;subject&quot; fehlt (in R4 mit Kardinalität 1..1).“ (Warnung)</li></ul>
 <p>Im <a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a> liefert <code>clinicalStatus.coding.code</code> den Wert <code>&quot;active&quot;</code>.</p></section>
 <section class="box"><h2>Quellen dieser Seite</h2><ul class="src"><li><a href="https://hl7.org/fhir/R4/condition.html" rel="noopener">FHIR R4: Condition</a></li><li><a href="https://hl7.org/fhir/R4/json.html" rel="noopener">FHIR R4: JSON-Format</a></li></ul></section>
+
 <section class="box"><h2>Weitere Ressourcen-Beispiele</h2><ul class="cards"><li><a href="/fhir-viewer/fhir-patient-beispiel/">Patient-Beispiel</a><p>Namen, Adresse und Kontakt</p></li><li><a href="/fhir-viewer/fhir-observation-beispiel/">Observation-Beispiel</a><p>Messwerte mit Code, Wert und Einheit</p></li><li><a href="/fhir-viewer/fhir-encounter-beispiel/">Encounter-Beispiel</a><p>Behandlungsfall mit Status und Klasse</p></li></ul></section>
 <section class="box"><h2>Weiterlesen</h2><ul class="cards"><li><a href="/fhir-viewer/">Viewer</a><p>JSON oder XML einfügen und sofort ansehen</p></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">FHIR-Bundle anzeigen</a><p>Bundle-Typen, Einträge und Referenzen lesen</p></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a><p>Pfadausdrücke an echten Beispielen ausprobieren</p></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a><p>Ressourcen, JSON/XML, REST und FHIR in Deutschland</p></li></ul></section>
 

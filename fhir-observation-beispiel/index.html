@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <script src="/fhir-viewer/assets/menu.js?v=8c5cbecd"></script>
 <title>FHIR Observation Beispiel: Gewicht und Blutdruck als JSON erklärt</title>
-<meta name="description" content="FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Körpergewicht und Blutdruck erklärt, mit Viewer. Beispiele aus der Spezifikation (CC0).">
+<meta name="description" content="FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Gewicht und Blutdruck erklärt, mit Viewer. Beispiele: Spezifikation, CC0.">
 <meta name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg">
 <meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="FHIR-Viewer">
 <meta property="og:locale" content="de_DE">
 <meta property="og:title" content="FHIR Observation Beispiel: Gewicht und Blutdruck als JSON erklärt">
-<meta property="og:description" content="FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Körpergewicht und Blutdruck erklärt, mit Viewer. Beispiele aus der Spezifikation (CC0).">
+<meta property="og:description" content="FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Gewicht und Blutdruck erklärt, mit Viewer. Beispiele: Spezifikation, CC0.">
 <meta property="og:url" content="https://freimoser.github.io/fhir-viewer/fhir-observation-beispiel/">
 <meta property="og:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -29,10 +29,10 @@
 <meta property="og:image:alt" content="Viewer für FHIR-Daten: FHIR-Ressourcen und Bundles im Browser lesen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="FHIR Observation Beispiel: Gewicht und Blutdruck als JSON erklärt">
-<meta name="twitter:description" content="FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Körpergewicht und Blutdruck erklärt, mit Viewer. Beispiele aus der Spezifikation (CC0).">
+<meta name="twitter:description" content="FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Gewicht und Blutdruck erklärt, mit Viewer. Beispiele: Spezifikation, CC0.">
 <meta name="twitter:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
 <link rel="stylesheet" href="/fhir-viewer/assets/styles.css?v=58fcfb48">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIR Observation Beispiel: Gewicht und Blutdruck als JSON erklärt","description":"FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Körpergewicht und Blutdruck erklärt, mit Viewer. Beispiele aus der Spezifikation (CC0).","url":"https://freimoser.github.io/fhir-viewer/fhir-observation-beispiel/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIR Observation Beispiel: Gewicht und Blutdruck als JSON erklärt","description":"FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Gewicht und Blutdruck erklärt, mit Viewer. Beispiele: Spezifikation, CC0.","url":"https://freimoser.github.io/fhir-viewer/fhir-observation-beispiel/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FHIR-Viewer","item":"https://freimoser.github.io/fhir-viewer/"},{"@type":"ListItem","position":2,"name":"FHIR-Observation-Beispiel","item":"https://freimoser.github.io/fhir-viewer/fhir-observation-beispiel/"}]}</script>
 </head>
 <body>
@@ -72,6 +72,9 @@
 <ul><li>Löschen Sie die Zeile <code>"status": "final"</code>. Der Viewer meldet: „Pflichtfeld &quot;status&quot; fehlt (in R4 mit Kardinalität 1..1).“ (Warnung)</li><li>Fügen Sie neben <code>valueQuantity</code> ein zweites Feld <code>"valueString": "185"</code> hinzu. Der Viewer meldet: „Mehrere value[x]-Felder gleichzeitig (valueQuantity, valueString). Es darf nur eines vorkommen.“ (Fehler)</li></ul>
 <p>Den Blutdruck lesen Sie im <a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a> mit <code>component.value.ofType(Quantity).value</code>; dort steht auch, warum eine naheliegende Variante mit <code>code.coding.code</code> nichts findet.</p></section>
 <section class="box"><h2>Quellen dieser Seite</h2><ul class="src"><li><a href="https://hl7.org/fhir/R4/observation.html" rel="noopener">FHIR R4: Observation</a></li><li><a href="https://hl7.org/fhir/R4/json.html" rel="noopener">FHIR R4: JSON-Format</a></li></ul></section>
+<section class="box" aria-labelledby="loinc"><h2 id="loinc">LOINC-Hinweis</h2>
+<p lang="en">This material contains content from LOINC (<a href="https://loinc.org/" rel="noopener">http://loinc.org</a>). LOINC is copyright © Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at <a href="https://loinc.org/license/" rel="noopener">http://loinc.org/license</a>. LOINC® is a registered United States trademark of Regenstrief Institute, Inc.</p>
+<p>Einige Beispiele enthalten LOINC-Codes mit Anzeigenamen aus der FHIR-Spezifikation. Die LOINC-Lizenz (Abschnitt 10) sieht diesen englischen Hinweis für Produkte vor, die LOINC-Inhalte enthalten.</p></section>
 <section class="box"><h2>Weitere Ressourcen-Beispiele</h2><ul class="cards"><li><a href="/fhir-viewer/fhir-patient-beispiel/">Patient-Beispiel</a><p>Namen, Adresse und Kontakt</p></li><li><a href="/fhir-viewer/fhir-encounter-beispiel/">Encounter-Beispiel</a><p>Behandlungsfall mit Status und Klasse</p></li><li><a href="/fhir-viewer/fhir-condition-beispiel/">Condition-Beispiel</a><p>Diagnose mit Statusangaben</p></li></ul></section>
 <section class="box"><h2>Weiterlesen</h2><ul class="cards"><li><a href="/fhir-viewer/">Viewer</a><p>JSON oder XML einfügen und sofort ansehen</p></li><li><a href="/fhir-viewer/fhir-bundle-anzeigen/">FHIR-Bundle anzeigen</a><p>Bundle-Typen, Einträge und Referenzen lesen</p></li><li><a href="/fhir-viewer/fhirpath-tester/">FHIRPath-Tester</a><p>Pfadausdrücke an echten Beispielen ausprobieren</p></li><li><a href="/fhir-viewer/was-ist-fhir/">Was ist FHIR?</a><p>Ressourcen, JSON/XML, REST und FHIR in Deutschland</p></li></ul></section>
 

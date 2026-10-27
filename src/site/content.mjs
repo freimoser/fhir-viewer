@@ -19,6 +19,7 @@ export const SRC = {
   kbvMio: { label: "KBV: Medizinische Informationsobjekte (MIO)", url: "https://hub.kbv.de/site/mio" },
   isik: { label: "gematik: ISiK Basis 6.0.0", url: "https://gemspec.gematik.de/ig/fhir/isik/basis/6.0.0/index.html" },
   hl7de: { label: "HL7 Deutschland: Technisches Komitee FHIR", url: "https://www.hl7.de/technische-komitees/fhir/" },
+  loinc: { label: "LOINC-Lizenz (Regenstrief Institute)", url: "https://loinc.org/license/" },
   medplum: { label: "Medplum (Apache-2.0)", url: "https://github.com/medplum/medplum" },
 };
 
@@ -28,7 +29,7 @@ export const srcList = (keys) => `<ul class="src">${keys.map((k) => `<li><a href
 export const DE_FACTS = [
   { src: "kbvBasis", text: "Die KBV nutzt FHIR für MIOs und weitere Schnittstellen (genannt werden eRezept, eAU und Wechselschnittstellen). Die KBV-Basis-Profile werden in mehreren MIOs wiederverwendet; Ziel ist, dass gleiche Information an gleicher Stelle zu finden ist. Sie bauen auf den Basisprofilen von HL7 Deutschland auf, abgestimmt mit der Medizininformatik-Initiative (MII)." },
   { src: "kbvMio", text: "Nach der KBV sind MIOs digitale Informationsbausteine; die ePA speichert die Daten, die MIOs legen deren Struktur fest. Zu den Basisprofilen zählen unter anderem Patient, Körperkenngrößen und Diagnose. Zu jedem MIO gibt es ein Validierungspaket, das den HL7-Validator einschließt." },
-  { src: "isik", text: "Der Implementierungsleitfaden ISiK Basis (gematik) liegt in Version 6.0.0 vor und gilt für den Bereich Deutschland. Er basiert auf FHIR 4.0.1, nutzt eine REST-API und ist ab 2026-07-01 aktiv. Die Verpflichtung beruht laut Leitfaden auf § 373 SGB V. Für Implementierung und Betrieb ist laut Leitfaden eine SNOMED-CT-Lizenz erforderlich." },
+  { src: "isik", text: "Der Implementierungsleitfaden ISiK Basis (gematik) liegt in Version 6.0.0 vor und gilt für den Bereich Deutschland. Er basiert auf FHIR 4.0.1, nutzt eine REST-API und ist ab 2026-07-01 aktiv. Der Leitfaden verweist für das Bestätigungsverfahren der gematik auf § 373 SGB V. Für Implementierung und Betrieb ist laut Leitfaden eine SNOMED-CT-Lizenz erforderlich." },
   { src: "hl7de", text: "Das Technische Komitee FHIR von HL7 Deutschland fördert und verbreitet FHIR und veröffentlicht deutsche Profile und ValueSets." },
 ];
 

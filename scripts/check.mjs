@@ -64,6 +64,7 @@ if (fs.readFileSync(path.join(root, "c67e9b3d19be863e1c5ec56c3a89f916.txt"), "ut
   const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => e.name === "node_modules" || e.name === ".git" ? [] : e.isDirectory() ? walk(path.join(d, e.name)) : e.name.endsWith(".html") ? [path.join(d, e.name)] : []);
   for (const fp of walk(root)) {
     const rel = path.relative(root, fp); const h = fs.readFileSync(fp, "utf8");
+    if (/mailto:|[\w.-]+@[\w-]+\.[a-z]{2,}/i.test(h.replace(/@medplum\/core/g, ""))) fail(rel + ": Mailadresse auf der Seite");
     const blocks = (h.match(/id="weitere"/g) || []).length;
     if (blocks > 1) fail(rel + ": mehr als ein Werkzeug-Block");
     if (blocks === 1 && !allowed.has(rel)) fail(rel + ": Werkzeug-Block nicht vorgesehen");

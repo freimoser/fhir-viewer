@@ -3,7 +3,7 @@ Die folgende Bibliothek ist in assets/ (gebündelt und minifiziert) enthalten.
 
 ================================================================================
 @medplum/core 5.2.9 – https://github.com/medplum/medplum – https://www.medplum.com/
-Lizenz: Apache License 2.0. Autor laut package.json: Medplum <hello@medplum.com>.
+Lizenz: Apache License 2.0. Autor laut package.json: Medplum.
 Verwendet wird nur evalFhirPath samt den davon benötigten Modulen; esbuild entfernt ungenutzten Code.
 Änderungen am Quellcode: keine; die Bibliothek wird gebündelt und minifiziert.
 Eine NOTICE-Datei liegt dem Paket @medplum/core nicht bei.

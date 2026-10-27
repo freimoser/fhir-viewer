@@ -501,7 +501,7 @@ ${crumbs([{ href: href(""), label: SHORT }, { label: "Quellen und Lizenzen" }])}
 <p>Die deutschen Quellen wurden am ${LASTMOD.split("-").reverse().join(".")} abgerufen. Ihr Stand kann sich seitdem geändert haben.</p></section>
 ${LOINC_NOTE}
 <section class="prose"><h2>Mitgelieferte Software</h2>
-<p><code>@medplum/core</code> (Version 5.2.9, <a href="https://www.apache.org/licenses/LICENSE-2.0" rel="noopener">Apache-2.0</a>, Medplum, hello@medplum.com) liefert <code>evalFhirPath</code> für den FHIRPath-Tester. Die Bibliothek wurde mit esbuild gebündelt; Lizenztext und Hinweise stehen in der Datei <a href="${href("THIRD-PARTY-LICENSES")}">THIRD-PARTY-LICENSES</a>. Weitere Laufzeitbausteine von Dritten gibt es nicht; es gibt keine CDN-Einbindung und keine externen Schriften.</p>
+<p><code>@medplum/core</code> (Version 5.2.9, <a href="https://www.apache.org/licenses/LICENSE-2.0" rel="noopener">Apache-2.0</a>, Autor: Medplum) liefert <code>evalFhirPath</code> für den FHIRPath-Tester. Die Bibliothek wurde mit esbuild gebündelt; Lizenztext und Hinweise stehen in der Datei <a href="${href("THIRD-PARTY-LICENSES")}">THIRD-PARTY-LICENSES</a>. Weitere Laufzeitbausteine von Dritten gibt es nicht; es gibt keine CDN-Einbindung und keine externen Schriften.</p>
 <p>Der Quellcode dieses Projekts liegt im <a href="https://github.com/freimoser/${SLUG}">GitHub-Repository</a> (dort auch die Datei <code>quellen.md</code>).</p></section>
 <section class="prose"><h2>Marken</h2><p>${esc(DISCLAIMER_TM)}</p></section>
 ${others(path)}

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <script src="/fhir-viewer/assets/menu.js?v=8c5cbecd"></script>
 <title>FHIRPath-Tester online für FHIR-Ressourcen (mit Beispielen)</title>
-<meta name="description" content="FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, typische Stolperstellen und ein Tester im Browser.">
+<meta name="description" content="FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, Stolperstellen und ein Tester im Browser.">
 <meta name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg">
 <meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="FHIR-Viewer">
 <meta property="og:locale" content="de_DE">
 <meta property="og:title" content="FHIRPath-Tester online für FHIR-Ressourcen (mit Beispielen)">
-<meta property="og:description" content="FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, typische Stolperstellen und ein Tester im Browser.">
+<meta property="og:description" content="FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, Stolperstellen und ein Tester im Browser.">
 <meta property="og:url" content="https://freimoser.github.io/fhir-viewer/fhirpath-tester/">
 <meta property="og:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -29,10 +29,10 @@
 <meta property="og:image:alt" content="Viewer für FHIR-Daten: FHIR-Ressourcen und Bundles im Browser lesen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="FHIRPath-Tester online für FHIR-Ressourcen (mit Beispielen)">
-<meta name="twitter:description" content="FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, typische Stolperstellen und ein Tester im Browser.">
+<meta name="twitter:description" content="FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, Stolperstellen und ein Tester im Browser.">
 <meta name="twitter:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
 <link rel="stylesheet" href="/fhir-viewer/assets/styles.css?v=58fcfb48">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIRPath-Tester online für FHIR-Ressourcen (mit Beispielen)","description":"FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, typische Stolperstellen und ein Tester im Browser.","url":"https://freimoser.github.io/fhir-viewer/fhirpath-tester/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIRPath-Tester online für FHIR-Ressourcen (mit Beispielen)","description":"FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, Stolperstellen und ein Tester im Browser.","url":"https://freimoser.github.io/fhir-viewer/fhirpath-tester/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FHIR-Viewer","item":"https://freimoser.github.io/fhir-viewer/"},{"@type":"ListItem","position":2,"name":"FHIRPath-Tester","item":"https://freimoser.github.io/fhir-viewer/fhirpath-tester/"}]}</script>
 </head>
 <body>
@@ -89,7 +89,7 @@
 <p>Bei einem Bundle gilt der Ausdruck für die Wurzel. <code>entry.resource</code> sammelt alle eingebetteten Ressourcen, <code>ofType(Observation)</code> behält die Observations, <code>count()</code> zählt sie. Im Viewer wählen Sie dazu „Ganzes Bundle“.</p>
 <button class="btn" type="button" data-fp-sample="bundle-verweise" data-fp-expr="entry.resource.ofType(Observation).count()" data-fp-scope="bundle">Im Tester ausprobieren</button></article></section>
 
-<section class="prose" aria-labelledby="stolper"><h2 id="stolper">Typische Stolperstellen</h2>
+<section class="prose" aria-labelledby="stolper"><h2 id="stolper">Stolperstellen</h2>
 <h3>Leere Menge statt Treffer: mehrere Codierungen</h3>
 <p><code>component.where(code.coding.code='8480-6').value.ofType(Quantity).value</code> liefert auf dem Blutdruck-Beispiel <strong>nichts</strong> (<code>[]</code>), obwohl der systolische Wert vorhanden ist. Der <code>code</code> der Komponente hat zwei Codierungen (LOINC und ein lokales System), <code>code.coding.code</code> sind also zwei Werte, und der Vergleich mit <code>=</code> auf einer Liste mit zwei Elementen trifft nicht. Besser: <code>component.where(code.coding.where(code='8480-6').exists()).value.ofType(Quantity).value</code> ergibt <code>[107]</code>.</p>
 <h3>Vergleich mit einer Liste</h3>
@@ -119,6 +119,6 @@
 <p class="disclaimer">HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.</p>
 <p class="disclaimer">Open-Source-Baustein: <code>@medplum/core</code> (Apache-2.0, Autor: Medplum) für den FHIRPath-Tester, lokal mitgeliefert. <a href="/fhir-viewer/quellen/">Lizenzen</a>. Gebaut in München / Remote.</p>
 </div></footer>
-<script type="module" src="/fhir-viewer/assets/app.js?v=2c56de7d"></script>
+<script type="module" src="/fhir-viewer/assets/app.js?v=6d591379"></script>
 </body>
 </html>

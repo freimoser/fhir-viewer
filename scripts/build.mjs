@@ -75,14 +75,14 @@ write("llms.txt", `# ${NAME}
 
 > Kostenloser Viewer für FHIR-Daten im Browser (deutsch). Liest FHIR-Ressourcen und Bundles als JSON oder XML (Basis: FHIR R4), zeigt Karte und Baum, listet Bundle-Einträge, löst Referenzen innerhalb eines Bundles auf und wertet FHIRPath-Ausdrücke aus. Läuft vollständig im Browser, kein Upload, keine Cookies. Kein Validator: Profile und Terminologien werden nicht geprüft. Nur zur Ansicht, kein Medizinprodukt.
 
-Eine Plausibilitätsprüfung deckt nur ausgewählte Regeln ab (Syntax, resourceType, einzelne Pflichtfelder, Bundle-Regeln bdl-1/3/4/7/9–12, Datumsformate, Referenzen). Der FHIRPath-Tester nutzt evalFhirPath aus @medplum/core (Apache-2.0); Ergebnisse können von anderen Implementierungen abweichen. R4B- und R5-Daten werden meist angezeigt, aber nicht vollständig geprüft.
+Eine Plausibilitätsprüfung deckt nur ausgewählte Regeln ab (Syntax, resourceType, einzelne Pflichtfelder, Bundle-Regeln bdl-1/3/4/7/9–12, Datumsformate, Referenzen). Der FHIRPath-Tester nutzt evalFhirPath aus @medplum/core (Apache-2.0); Ergebnisse können von anderen Implementierungen abweichen. R4B- und R5-Daten können angezeigt werden, werden aber nicht vollständig geprüft.
 
 ## Seiten
 - [${NAME}](${L("")}): das Werkzeug mit Beispielen und FAQ
 - [Beispiele zum Ausprobieren](${L("")}#beispiele): acht Beispiele aus der FHIR-Spezifikation R4 (CC0)
-- [Häufige Fehler und Meldungen](${L("")}#fehler): echte Meldungen des Viewers zu typischen Eingabefehlern
+- [Fehler und Meldungen](${L("")}#fehler): echte Meldungen des Viewers zu Eingabefehlern
 - [FHIR-Bundle anzeigen](${L("fhir-bundle-anzeigen/")}): Bundle-Typen, Einträge, Referenzen, Regeln
-- [FHIRPath-Tester](${L("fhirpath-tester/")}): fünf Beispiele und typische Stolperstellen
+- [FHIRPath-Tester](${L("fhirpath-tester/")}): fünf Beispiele und Stolperstellen
 - [Was ist FHIR?](${L("was-ist-fhir/")}): Ressourcen, JSON/XML, REST, FHIR in Deutschland mit Quellen
 - [FHIR-Patient-Beispiel](${L("fhir-patient-beispiel/")})
 - [FHIR-Observation-Beispiel](${L("fhir-observation-beispiel/")})

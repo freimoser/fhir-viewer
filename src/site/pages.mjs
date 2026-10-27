@@ -125,8 +125,8 @@ ${viewerBlock({ def: "patient", sampleButtons: [sampleBtn("patient", "Patient"),
 
 <section class="prose" aria-labelledby="grenzen"><h2 id="grenzen">Grenzen: was der Viewer nicht tut</h2>
 <ul>
-<li><strong>Keine Validierung.</strong> Profile (zum Beispiel von KBV oder gematik), Terminologien, ValueSets und die meisten Invarianten werden nicht geprüft. Die Hinweise betreffen nur die in den <a href="#faq">FAQ</a> genannten Regeln. „Keine Auffälligkeiten“ heißt nicht „gültig“.</li>
-<li><strong>R4 als Grundlage.</strong> R4B- und R5-Daten werden meist angezeigt, die Hinweise sind aber auf R4 ausgerichtet.</li>
+<li><strong>Keine Validierung.</strong> Profile (zum Beispiel von KBV oder gematik), Terminologien, ValueSets und die übrigen Invarianten werden nicht geprüft. Die Hinweise betreffen nur die in den <a href="#faq">FAQ</a> genannten Regeln. „Keine Auffälligkeiten“ heißt nicht „gültig“.</li>
+<li><strong>R4 als Grundlage.</strong> R4B- und R5-Daten können angezeigt werden, die Hinweise sind aber auf R4 ausgerichtet.</li>
 <li><strong>FHIRPath mit einer Fremdbibliothek.</strong> Der Tester nutzt <code>evalFhirPath</code> aus <a href="https://github.com/medplum/medplum" rel="noopener">@medplum/core</a>. Die Bibliothek ist nachsichtig: Ein fehlender Punkt wie in <code>name.where(use='official')family</code> wird nicht gemeldet. Ergebnisse können von anderen FHIRPath-Implementierungen abweichen. Mehr dazu im <a href="${href("fhirpath-tester/")}">FHIRPath-Tester</a>.</li>
 <li><strong>Kein Medizinprodukt.</strong> Nur zur Ansicht; nicht für Diagnose, Therapie oder Abrechnung.</li>
 </ul></section>
@@ -142,11 +142,11 @@ ${sampleCards(SAMPLES.map((s) => s.id))}</section>
 <li><a href="${href("fhir-encounter-beispiel/")}">FHIR-Encounter-Beispiel</a><p>Der kleinste sinnvolle Behandlungsfall: <code>status</code> und <code>class</code>.</p></li>
 <li><a href="${href("fhir-condition-beispiel/")}">FHIR-Condition-Beispiel</a><p>Diagnose mit klinischem Status und Verifizierungsstatus.</p></li>
 <li><a href="${href("fhir-bundle-anzeigen/")}">FHIR-Bundle anzeigen</a><p>Wenn eine Datei mehrere Ressourcen enthält und diese aufeinander zeigen.</p></li>
-<li><a href="${href("fhirpath-tester/")}">FHIRPath-Tester</a><p>Pfadausdrücke an den Beispielen ausprobieren, inklusive typischer Stolperstellen.</p></li>
+<li><a href="${href("fhirpath-tester/")}">FHIRPath-Tester</a><p>Pfadausdrücke an den Beispielen ausprobieren, inklusive Stolperstellen.</p></li>
 <li><a href="${href("was-ist-fhir/")}">Was ist FHIR?</a><p>Grundbegriffe und belegte Quellen zu FHIR in Deutschland.</p></li>
 </ul></section>
 
-<section class="prose" aria-labelledby="fehler"><h2 id="fehler">Häufige Fehler und was der Viewer dazu sagt</h2>
+<section class="prose" aria-labelledby="fehler"><h2 id="fehler">Fehler und was der Viewer dazu sagt</h2>
 <p>Die folgenden Meldungen stammen aus dem Viewer selbst: Beim Erzeugen dieser Seite wurden die Eingaben durch dieselben Funktionen geschickt, die auch im Browser laufen. Bei JSON-Syntaxfehlern kommt der Satzteil nach dem Doppelpunkt vom JSON-Parser Ihres Browsers und kann je nach Browser anders lauten.</p>
 ${homeErrors()}</section>
 
@@ -225,7 +225,7 @@ ${others(path)}
   {
     const path = "fhirpath-tester/";
     const title = "FHIRPath-Tester online für FHIR-Ressourcen (mit Beispielen)";
-    const desc = "FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, typische Stolperstellen und ein Tester im Browser.";
+    const desc = "FHIRPath-Ausdrücke direkt auf FHIR-JSON oder -XML auswerten: fünf Beispiele mit Ergebnissen, Stolperstellen und ein Tester im Browser.";
     const crumbItems = [{ label: SHORT, url: SITE }, { label: "FHIRPath-Tester", url: url(path) }];
     const ex = [
       { s: "patient", e: "name.where(use='official').given.first()", t: "Ein Element aus einer Liste herausfiltern", d: "Ein Patient kann mehrere <code>name</code>-Einträge haben, im Beispiel drei (<code>official</code>, <code>usual</code>, <code>maiden</code>). <code>where(use='official')</code> behält den passenden Eintrag, <code>given</code> nimmt dessen Vornamen, <code>first()</code> den ersten." },
@@ -263,7 +263,7 @@ ${viewerBlock({ def: "patient", tab: "fhirpath", sampleButtons: [sampleBtn("pati
 <p>Alle Ergebnisse wurden beim Erzeugen dieser Seite mit demselben Code berechnet, den der Tester im Browser nutzt.</p>
 ${exHtml}</section>
 
-<section class="prose" aria-labelledby="stolper"><h2 id="stolper">Typische Stolperstellen</h2>
+<section class="prose" aria-labelledby="stolper"><h2 id="stolper">Stolperstellen</h2>
 <h3>Leere Menge statt Treffer: mehrere Codierungen</h3>
 <p>${code(pit1.bad)} liefert auf dem Blutdruck-Beispiel <strong>nichts</strong> (${code("[]")}), obwohl der systolische Wert vorhanden ist. Der <code>code</code> der Komponente hat zwei Codierungen (LOINC und ein lokales System), <code>code.coding.code</code> sind also zwei Werte, und der Vergleich mit <code>=</code> auf einer Liste mit zwei Elementen trifft nicht. Besser: ${code(pit1.good)} ergibt ${code(JSON.stringify(pit1.rg))}.</p>
 <h3>Vergleich mit einer Liste</h3>
@@ -319,18 +319,18 @@ ${crumbs([{ href: href(""), label: SHORT }, { label: "Was ist FHIR?" }])}
 ${viewerBlock({ def: "encounter", sampleButtons: [sampleBtn("encounter", "Encounter laden"), sampleBtn("patient", "Patient laden")] })}
 
 <section class="prose" aria-labelledby="ref"><h2 id="ref">Referenzen: wie Ressourcen aufeinander zeigen</h2>
-<p>Ressourcen enthalten sich meist nicht gegenseitig, sondern verweisen aufeinander, etwa <code>"subject": {"reference": "Patient/example"}</code> bei einem Encounter. Die Spezifikation kennt den Literalverweis (<code>reference</code>: relative oder absolute URL, bei <code>#…</code> eine contained-Ressource) und den logischen Verweis über einen <code>identifier</code>. Ob das Ziel in derselben Datei liegt, ist Sache des Bundles – mehr dazu unter <a href="${href("fhir-bundle-anzeigen/")}">FHIR-Bundle anzeigen</a>.</p></section>
+<p>Ressourcen verweisen aufeinander, etwa <code>"subject": {"reference": "Patient/example"}</code> bei einem Encounter. Die Spezifikation kennt den Literalverweis (<code>reference</code>: relative oder absolute URL, bei <code>#…</code> eine contained-Ressource) und den logischen Verweis über einen <code>identifier</code>. Ob das Ziel in derselben Datei liegt, ist Sache des Bundles – mehr dazu unter <a href="${href("fhir-bundle-anzeigen/")}">FHIR-Bundle anzeigen</a>.</p></section>
 
 <section class="prose" aria-labelledby="rest"><h2 id="rest">REST: wie Ressourcen übertragen werden</h2>
 <p>Die Spezifikation beschreibt eine REST-Schnittstelle: eine Ressource lesen mit <code>GET [base]/[type]/[id]</code>, anlegen mit <code>POST [base]/[type]</code>, ändern mit <code>PUT [base]/[type]/[id]</code>, löschen mit <code>DELETE [base]/[type]/[id]</code> und suchen mit <code>GET [base]/[type]?…</code>. Das Ergebnis einer Suche kommt als <a href="${href("fhir-bundle-anzeigen/")}">Bundle</a>. Dieser Viewer greift auf keine solche Schnittstelle zu; Sie fügen Daten ein, die Sie bereits haben.</p></section>
 
 <section class="prose" aria-labelledby="versionen"><h2 id="versionen">Versionen</h2>
-<p>Dieser Viewer folgt FHIR R4 (4.0.1). Die R4-Seiten der Spezifikation weisen darauf hin, dass R5 (5.0.0) die Version ist, die R4 ablöst. Der ISiK-Leitfaden aus Deutschland (siehe unten) basiert auf FHIR 4.0.1. Daten aus R4B oder R5 zeigt der Viewer meist an; seine Hinweise sind aber auf R4 ausgelegt.</p></section>
+<p>Dieser Viewer folgt FHIR R4 (4.0.1). Die R4-Seiten der Spezifikation weisen darauf hin, dass R5 (5.0.0) die Version ist, die R4 ablöst. Der ISiK-Leitfaden aus Deutschland (siehe unten) basiert auf FHIR 4.0.1. Daten aus R4B oder R5 kann der Viewer anzeigen; seine Hinweise sind aber auf R4 ausgelegt.</p></section>
 
 <section class="prose" aria-labelledby="deutschland"><h2 id="deutschland">FHIR in Deutschland</h2>
 <p>Die folgenden Aussagen stammen jeweils von der verlinkten Seite, abgerufen am ${LASTMOD.split("-").reverse().join(".")}.</p>
 <ul>${DE_FACTS.map((f) => `<li>${esc(f.text)} Quelle: <a href="${SRC[f.src].url}" rel="noopener">${SRC[f.src].label}</a>.</li>`).join("")}</ul>
-<p>Für den Alltag heißt das: Wer FHIR-Daten aus deutschen Systemen liest, trifft häufig auf Profile, die auf diesen Basisprofilen aufbauen. Diese Profile prüft der Viewer nicht; er zeigt die Struktur so, wie sie in der Datei steht.</p>
+<p>Für den Alltag heißt das: Wer FHIR-Daten aus deutschen Systemen liest, kann auf Profile treffen, die auf diesen Basisprofilen aufbauen. Diese Profile prüft der Viewer nicht; er zeigt die Struktur so, wie sie in der Datei steht.</p>
 ${EDITORIAL_LINK ? `<p>Wo Praxis- und Krankenhaussysteme an weitere Anwendungen angebunden werden, geht es um genau solche Schnittstellendaten. Ein Beispiel für einen Anbieter, der dafür eine Plattform beschreibt, ist <a href="${EDITORIAL.url}" rel="noopener">${EDITORIAL.name}</a>.</p>` : ""}</section>
 
 <section class="prose" aria-labelledby="fp"><h2 id="fp">Pfade in FHIR-Daten: FHIRPath</h2>
@@ -383,7 +383,7 @@ ${others("__")}
     title: "FHIR Patient Beispiel (JSON) erklärt – Felder der Patient-Ressource",
     desc: "FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, zum Öffnen im Viewer. Beispiel aus der Spezifikation (CC0).",
     h1: "FHIR-Patient-Beispiel: JSON lesen und verstehen", h1plain: "FHIR-Patient-Beispiel: JSON lesen und verstehen",
-    lead: "Die Patient-Ressource enthält laut Spezifikation demografische und andere administrative Angaben zu einer Person oder einem Tier, das Gesundheitsleistungen oder andere gesundheitsbezogene Dienste erhält. Das Beispiel darunter stammt aus der Spezifikation und enthält bewusst viele Sonderfälle: mehrere Namen, eine Adresse, einen Kontakt und eine Erweiterung an der Geburtsangabe.",
+    lead: "Die Patient-Ressource enthält laut Spezifikation demografische und andere administrative Angaben zu einer Person oder einem Tier, das Gesundheitsleistungen oder andere gesundheitsbezogene Dienste erhält. Das Beispiel darunter stammt aus der Spezifikation und enthält Sonderfälle: mehrere Namen, eine Adresse, einen Kontakt und eine Erweiterung an der Geburtsangabe.",
     buttons: [sampleBtn("patient", "Patient laden"), sampleBtn("bundle-verweise", "Patienten im Bundle")],
     intro: "<p>Die Tabelle nennt Elemente des Beispiels. Die Werte stehen so in der Beispieldatei, nicht in einer Beispielrechnung.</p>",
     rows: [
@@ -427,7 +427,7 @@ ${others("__")}
       ["valueQuantity.value", "Der Messwert (<code>value[x]</code>) als Zahl; die Einheit steht daneben."],
       ["valueQuantity.unit", "Lesbare Einheit. Daneben steht <code>code</code> mit dem maschinenlesbaren UCUM-Code (<code>system</code> <code>http://unitsofmeasure.org</code>) – hier <code>[lb_av]</code> für Pfund. Das Beispiel ist also in Pfund angegeben; der Viewer rechnet nicht um."],
     ],
-    spec: `<p>Observation ist laut Spezifikation eine normative Ressource (Maturity Level N). Die meisten Observations sind einfache Name/Wert-Paare mit Metadaten; manche fassen andere Observations logisch zusammen oder bestehen aus mehreren Komponenten (<strong>component</strong>). Jede Komponente hat einen eigenen <code>code</code> (<code>1..1</code>) und einen eigenen Wert (<code>value[x]</code>). Beim Blutdruck-Beispiel sind das ein systolischer und ein diastolischer Wert, die nur gemeinsam Sinn ergeben. Der Wert und ein <code>dataAbsentReason</code> (Grund für einen fehlenden Wert) dürfen nicht gleichzeitig vorkommen (Regel obs-6). Ein DiagnosticReport gibt nach der Spezifikation den klinischen oder Workflow-Kontext für eine Gruppe von Observations; er verweist auf sie, um Labor-, Bildgebungs- und andere Daten zu einem vollständigen Bericht zusammenzufügen.</p>`,
+    spec: `<p>Observation ist laut Spezifikation eine normative Ressource (Maturity Level N). Nach der Spezifikation sind die meisten Observations einfache Name/Wert-Paare mit Metadaten; manche fassen andere Observations logisch zusammen oder bestehen aus mehreren Komponenten (<strong>component</strong>). Jede Komponente hat einen eigenen <code>code</code> (<code>1..1</code>) und einen eigenen Wert (<code>value[x]</code>). Beim Blutdruck-Beispiel sind das ein systolischer und ein diastolischer Wert, die nur gemeinsam Sinn ergeben. Der Wert und ein <code>dataAbsentReason</code> (Grund für einen fehlenden Wert) dürfen nicht gleichzeitig vorkommen (Regel obs-6). Ein DiagnosticReport gibt nach der Spezifikation den klinischen oder Workflow-Kontext für eine Gruppe von Observations; er verweist auf sie, um Labor-, Bildgebungs- und andere Daten zu einem vollständigen Bericht zusammenzufügen.</p>`,
     experiments: (vh) => [
       ["Löschen Sie die Zeile <code>\"status\": \"final\"</code>.", vh((r) => { delete r.status; }, "observation", "warn")],
       ["Fügen Sie neben <code>valueQuantity</code> ein zweites Feld <code>\"valueString\": \"185\"</code> hinzu.", vh((r) => { r.valueString = "185"; }, "observation", "error")],
@@ -470,7 +470,7 @@ ${others("__")}
       ["clinicalStatus.coding[0].code", "Klinischer Status, hier <code>active</code>. Der Wert stammt aus einer festen Liste (Bindung „required“)."],
       ["verificationStatus.coding[0].code", "Wie sicher die Diagnose ist; die Spezifikation nennt unconfirmed, provisional, differential, confirmed, refuted und entered-in-error. Hier <code>confirmed</code>."],
       ["category[0].coding[0].code", "Einordnung, hier <code>encounter-diagnosis</code>: eine Diagnose im Rahmen eines Kontakts (die Alternative ist ein Eintrag der Problemliste)."],
-      ["code.text", "Freitext der Diagnose. Das Element <code>code</code> ist in R4 optional (<code>0..1</code>); normalerweise stünden hier Codierungen, im Beispiel nur Text."],
+      ["code.text", "Freitext der Diagnose. Das Element <code>code</code> ist in R4 optional (<code>0..1</code>); im Beispiel steht hier nur Text."],
       ["bodySite[0].text", "Körperstelle als Liste (<code>0..*</code>)."],
       ["subject.reference", "Pflichtfeld (<code>1..1</code>): Wer hat die Diagnose?"],
       ["onsetDateTime", "Beginn (<code>onset[x]</code>): ein Datum, ein Datum mit Uhrzeit oder ein Alter."],

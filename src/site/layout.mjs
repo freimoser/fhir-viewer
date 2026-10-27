@@ -71,7 +71,7 @@ const SISTER = {
     "hl7v2-viewer": ["HL7-v2-Nachrichten ansehen", "HL7-v2-Nachrichten im Browser lesen"],
   },
   was: {
-    intro: "FHIR steht neben älteren Formaten, die in vielen Einrichtungen weiter laufen. Zwei davon lassen sich ebenfalls im Browser ansehen:",
+    intro: "FHIR steht neben anderen Formaten des Gesundheitswesens. Zwei davon lassen sich ebenfalls im Browser ansehen:",
     "cda-viewer": ["CDA-Dokumente im Browser öffnen", "Klinische Dokumente im Format CDA lesen"],
     "hl7v2-viewer": ["Nachrichten im Format HL7 v2 lesen", "HL7-v2-Nachrichten im Browser lesen"],
   },

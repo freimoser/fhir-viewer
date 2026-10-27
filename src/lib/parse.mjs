@@ -26,9 +26,9 @@ function jsonErrorPosition(err, text) {
 
 function jsonHint(msg, text, pos) {
   const m = String(msg);
-  if (pos && pos.offset !== undefined && pos.offset >= text.trimEnd().length) return "Die Eingabe endet mitten im JSON. Meist fehlt eine schließende Klammer } oder ] oder ein Anführungszeichen. Wurde beim Kopieren etwas abgeschnitten?";
+  if (pos && pos.offset !== undefined && pos.offset >= text.trimEnd().length) return "Die Eingabe endet mitten im JSON. Möglicherweise fehlt eine schließende Klammer } oder ] oder ein Anführungszeichen. Wurde beim Kopieren etwas abgeschnitten?";
   const near = pos ? text.split("\n")[pos.line - 1] || "" : "";
-  if (/Unexpected end|end of JSON|end of data/i.test(m)) return "Die Eingabe endet mitten im JSON. Meist fehlt eine schließende Klammer } oder ] oder ein Anführungszeichen. Wurde beim Kopieren etwas abgeschnitten?";
+  if (/Unexpected end|end of JSON|end of data/i.test(m)) return "Die Eingabe endet mitten im JSON. Möglicherweise fehlt eine schließende Klammer } oder ] oder ein Anführungszeichen. Wurde beim Kopieren etwas abgeschnitten?";
   if (/Expected double-quoted property name|Unexpected token '?\}/i.test(m) || /,\s*[}\]]/.test(near)) return "Wahrscheinlich steht ein Komma zu viel nach dem letzten Eintrag. JSON erlaubt kein Komma vor } oder ].";
   if (/Expected ',' or|after property value|after array element/i.test(m)) return "Zwischen zwei Einträgen fehlt ein Komma, oder ein Anführungszeichen wurde nicht geschlossen.";
   if (!/^\s*[{\[]/.test(text)) return "Die Eingabe beginnt weder mit { (JSON) noch mit < (XML). Fügen Sie den Inhalt einer FHIR-Datei ein, nicht den Dateinamen oder einen Hinweistext.";

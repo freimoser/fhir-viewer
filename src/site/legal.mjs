@@ -5,7 +5,7 @@ export function legalPages() {
   const ds = {
     path: "datenschutz/",
     title: "Datenschutz – Viewer für FHIR-Daten",
-    desc: "Datenschutzhinweise des Viewers für FHIR-Daten: Eingaben bleiben im Browser, keine Cookies, keine Analyse, Hosting über GitHub Pages.",
+    desc: "Datenschutz des Viewers für FHIR-Daten: Eingaben bleiben im Browser, keine Cookies, keine Analyse, kein Upload, Hosting über GitHub Pages.",
     h1: "Datenschutz",
     lastmod: LASTMOD,
     noViewer: true,
@@ -19,7 +19,8 @@ ${crumbs([{ href: href(""), label: SHORT }, { label: "Datenschutz" }])}
 <section class="prose"><h2>Ihre Eingaben und Dateien</h2>
 <p>FHIR-Daten, die Sie einfügen oder als Datei öffnen, werden im Browser ausgewertet. Der Seitencode enthält keine Funktion, die sie versendet, und eine Content-Security-Policy (<code>connect-src 'none'</code>) verbietet dem Seitencode Netzwerkanfragen. Beim ersten Auswerten eines FHIRPath-Ausdrucks lädt die Seite einen weiteren Programmteil von derselben Adresse nach; Ihre Daten sind darin nicht enthalten. Der Download einer Ressource erzeugt die Datei lokal in Ihrem Browser.</p>
 <p>Eingegebene Daten liegen bis zum Schließen oder Neuladen der Seite im Arbeitsspeicher Ihres Browsers. Die Seite speichert sie nicht in localStorage oder Cookies. Verwenden Sie bitte Testdaten oder anonymisierte Daten.</p></section>
-<section class="prose"><p><strong>Hosting:</strong> Diese Seite wird über GitHub Pages ausgeliefert. Beim Aufruf verarbeitet der Hoster technisch bedingt die IP-Adresse der Besucher. Wir erhalten diese Daten nicht und speichern keine personenbezogenen Daten von Ihnen. Näheres steht in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Datenschutzerklärung von GitHub</a>.</p></section>
+<section class="prose"><h2>Hosting</h2>
+<p>Diese Seite wird über GitHub Pages ausgeliefert. Beim Aufruf verarbeitet der Hoster technisch bedingt die IP-Adresse der Besucher. Wir erhalten diese Daten nicht und speichern keine personenbezogenen Daten von Ihnen. Näheres steht in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Datenschutzerklärung von GitHub</a>.</p></section>
 <section class="prose"><h2>Cookies, Analyse, Schriften</h2>
 <p>Die Seite setzt keine Cookies und nutzt keine Reichweitenmessung. Schriften, Skripte und Bilder kommen von derselben Adresse; es gibt keine Einbindung von Drittanbietern wie CDNs oder Schriftdiensten. Die Links zu Quellen und zu freimoser.de, LinkedIn und GitHub sind normale Verweise: Erst wenn Sie sie anklicken, verbinden Sie sich mit dem jeweiligen Anbieter.</p></section>
 <section class="prose"><h2>Google Search Console und Bing Webmaster Tools</h2>

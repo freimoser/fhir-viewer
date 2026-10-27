@@ -48,4 +48,4 @@ Deutsche Quellen abgerufen am 2026-10-27. Nicht als Quelle verwendet wurden Seit
 - Build: esbuild, puppeteer-core (nur zur Entwicklung, nicht Teil der Seite)
 
 ## Marken
-HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.
+HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International. Dieses Werkzeug ist ein unabhängiges Projekt und wird von HL7 International weder bereitgestellt noch empfohlen.

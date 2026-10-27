@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <script src="/fhir-viewer/assets/menu.js?v=8c5cbecd"></script>
-<title>FHIR Patient Beispiel (JSON) erklärt – Felder der Patient-Ressource</title>
-<meta name="description" content="FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, zum Öffnen im Viewer. Beispiel aus der Spezifikation (CC0).">
+<title>FHIR Patient Beispiel (JSON): Felder der Patient-Ressource</title>
+<meta name="description" content="FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, mit Viewer. Beispiel: Spezifikation, CC0.">
 <meta name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg">
 <meta name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -20,19 +20,19 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FHIR-Viewer">
 <meta property="og:locale" content="de_DE">
-<meta property="og:title" content="FHIR Patient Beispiel (JSON) erklärt – Felder der Patient-Ressource">
-<meta property="og:description" content="FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, zum Öffnen im Viewer. Beispiel aus der Spezifikation (CC0).">
+<meta property="og:title" content="FHIR Patient Beispiel (JSON): Felder der Patient-Ressource">
+<meta property="og:description" content="FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, mit Viewer. Beispiel: Spezifikation, CC0.">
 <meta property="og:url" content="https://freimoser.github.io/fhir-viewer/fhir-patient-beispiel/">
 <meta property="og:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Viewer für FHIR-Daten: FHIR-Ressourcen und Bundles im Browser lesen">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FHIR Patient Beispiel (JSON) erklärt – Felder der Patient-Ressource">
-<meta name="twitter:description" content="FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, zum Öffnen im Viewer. Beispiel aus der Spezifikation (CC0).">
+<meta name="twitter:title" content="FHIR Patient Beispiel (JSON): Felder der Patient-Ressource">
+<meta name="twitter:description" content="FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, mit Viewer. Beispiel: Spezifikation, CC0.">
 <meta name="twitter:image" content="https://freimoser.github.io/fhir-viewer/og-image.png">
 <link rel="stylesheet" href="/fhir-viewer/assets/styles.css?v=58fcfb48">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIR Patient Beispiel (JSON) erklärt – Felder der Patient-Ressource","description":"FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, zum Öffnen im Viewer. Beispiel aus der Spezifikation (CC0).","url":"https://freimoser.github.io/fhir-viewer/fhir-patient-beispiel/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FHIR Patient Beispiel (JSON): Felder der Patient-Ressource","description":"FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, mit Viewer. Beispiel: Spezifikation, CC0.","url":"https://freimoser.github.io/fhir-viewer/fhir-patient-beispiel/","inLanguage":"de-DE","dateModified":"2026-10-27","isPartOf":{"@type":"WebSite","name":"FHIR-Viewer","url":"https://freimoser.github.io/fhir-viewer/"},"author":{"@type":"Person","name":"Thomas Freimoser","url":"https://freimoser.de/","sameAs":["https://www.linkedin.com/in/thomas-freimoser/"],"address":{"@type":"PostalAddress","addressLocality":"München"}}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FHIR-Viewer","item":"https://freimoser.github.io/fhir-viewer/"},{"@type":"ListItem","position":2,"name":"FHIR-Patient-Beispiel","item":"https://freimoser.github.io/fhir-viewer/fhir-patient-beispiel/"}]}</script>
 </head>
 <body>
@@ -87,9 +87,9 @@
 <li><a href="https://www.linkedin.com/in/thomas-freimoser/" rel="me noopener">LinkedIn</a></li>
 </ul>
 <p class="disclaimer"><strong>Nur zur Ansicht, kein Medizinprodukt.</strong> Dieser Viewer ist kein Validator und ersetzt weder den offiziellen FHIR-Validator noch eine Profilprüfung. Nicht für Diagnose, Therapie oder Abrechnung verwenden.</p>
-<p class="disclaimer">HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.</p>
+<p class="disclaimer">HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International. Dieses Werkzeug ist ein unabhängiges Projekt und wird von HL7 International weder bereitgestellt noch empfohlen.</p>
 <p class="disclaimer">Open-Source-Baustein: <code>@medplum/core</code> (Apache-2.0, Autor: Medplum) für den FHIRPath-Tester, lokal mitgeliefert. <a href="/fhir-viewer/quellen/">Lizenzen</a>. Gebaut in München / Remote.</p>
 </div></footer>
-<script type="module" src="/fhir-viewer/assets/app.js?v=6d591379"></script>
+<script type="module" src="/fhir-viewer/assets/app.js?v=340cfef6"></script>
 </body>
 </html>

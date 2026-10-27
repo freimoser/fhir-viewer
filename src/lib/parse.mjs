@@ -24,6 +24,33 @@ function jsonErrorPosition(err, text) {
   return null;
 }
 
+/** Deutsche Fassung der JSON.parse-Meldung (Browser und Node formulieren unterschiedlich). */
+export function jsonMessageDe(msg, text, pos) {
+  const m = String(msg).replace(/^JSON\.parse: /, "");
+  const ch = pos ? lineCharAt(text, pos) : "";
+  const at = ch ? ` (gefunden: ${ch})` : "";
+  let r;
+  if ((r = m.match(/Unexpected token '(.)'/))) return `Unerwartetes Zeichen „${r[1]}“`;
+  if (/Unexpected end|end of data|end of JSON/i.test(m)) return "Die Eingabe endet unerwartet";
+  if (/Expected double-quoted property name|Expected property name or '\}'/i.test(m)) return "Erwartet wurde ein Name in doppelten Anführungszeichen" + (/or '\}'/.test(m) ? " oder }" : "") + at;
+  if (/Expected ',' or '\}'/i.test(m)) return "Erwartet wurde ein Komma oder } nach dem Wert" + at;
+  if (/Expected ',' or '\]'/i.test(m)) return "Erwartet wurde ein Komma oder ] nach dem Listeneintrag" + at;
+  if (/Expected ':'/i.test(m)) return "Erwartet wurde ein Doppelpunkt nach dem Namen" + at;
+  if (/Unterminated string/i.test(m)) return "Ein Text ist nicht abgeschlossen (schließendes Anführungszeichen fehlt)";
+  if (/Bad control character/i.test(m)) return "Ein Steuerzeichen, etwa ein Zeilenumbruch, steht innerhalb eines Textes";
+  if (/Bad escaped character|Bad Unicode escape/i.test(m)) return "Ungültige Escape-Folge in einem Text" + at;
+  if (/non-whitespace character after JSON|unexpected non-whitespace/i.test(m)) return "Nach dem JSON-Wert folgt weiterer Text" + at;
+  if (/not valid JSON|unexpected character|Unexpected token/i.test(m)) return "Unerwartetes Zeichen" + at;
+  if (/number|Exponent|fractional/i.test(m)) return "Ungültige Zahl" + at;
+  return "Syntaxfehler" + at;
+}
+
+function lineCharAt(text, pos) {
+  if (!pos || pos.offset === undefined) return "";
+  const c = text[pos.offset];
+  return c === undefined || c === "\n" || c === "\r" ? "" : `„${c}“`;
+}
+
 function jsonHint(msg, text, pos) {
   const m = String(msg);
   if (pos && pos.offset !== undefined && pos.offset >= text.trimEnd().length) return "Die Eingabe endet mitten im JSON. Möglicherweise fehlt eine schließende Klammer } oder ] oder ein Anführungszeichen. Wurde beim Kopieren etwas abgeschnitten?";
@@ -56,7 +83,7 @@ export function parseInput(raw) {
     value = JSON.parse(text);
   } catch (err) {
     const pos = jsonErrorPosition(err, text);
-    return { ok: false, format: "json", error: { message: "Ungültiges JSON" + (pos ? ` (Zeile ${pos.line}, Spalte ${pos.column})` : "") + ": " + String(err.message).replace(/^JSON\.parse: /, ""), hint: jsonHint(err.message, text, pos), line: pos?.line, column: pos?.column } };
+    return { ok: false, format: "json", error: { message: "Ungültiges JSON" + (pos ? ` (Zeile ${pos.line}, Spalte ${pos.column})` : "") + ": " + jsonMessageDe(err.message, text, pos), hint: jsonHint(err.message, text, pos), line: pos?.line, column: pos?.column } };
   }
   if (Array.isArray(value)) return { ok: false, format: "json", error: { message: "Auf oberster Ebene steht ein Array.", hint: "FHIR erwartet ein einzelnes Objekt mit \"resourceType\". Mehrere Ressourcen werden in einem Bundle zusammengefasst (\"resourceType\": \"Bundle\")." } };
   if (value === null || typeof value !== "object") return { ok: false, format: "json", error: { message: "Das JSON ist kein Objekt.", hint: "Eine FHIR-Ressource ist ein JSON-Objekt, das mit { beginnt." } };

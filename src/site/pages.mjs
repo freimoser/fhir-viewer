@@ -282,8 +282,8 @@ ${others(path)}
   // ---------------- Was ist FHIR ----------------
   {
     const path = "was-ist-fhir/";
-    const title = "Was ist FHIR? Ressourcen, JSON/XML, Bundle und FHIR in Deutschland";
-    const desc = "FHIR einfach erklärt: Ressourcen, JSON und XML, Referenzen, Bundles, REST und Versionen – mit Quellen zu FHIR in Deutschland (KBV, gematik, HL7 Deutschland).";
+    const title = "Was ist FHIR? Ressourcen, JSON/XML und FHIR in Deutschland";
+    const desc = "FHIR erklärt: Ressourcen, JSON und XML, Referenzen, Bundles, REST und Versionen – mit Quellen zu FHIR in Deutschland (KBV, gematik, HL7 Deutschland).";
     const crumbItems = [{ label: SHORT, url: SITE }, { label: "Was ist FHIR?", url: url(path) }];
     const encFull = J("encounter"); const { text: _t, ...enc } = encFull;
     const xml = `<Encounter xmlns="http://hl7.org/fhir">
@@ -380,8 +380,8 @@ ${others("__")}
 
   await resPage({
     path: "fhir-patient-beispiel/", sample: "patient", src: "patient", crumb: "FHIR-Patient-Beispiel",
-    title: "FHIR Patient Beispiel (JSON) erklärt – Felder der Patient-Ressource",
-    desc: "FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, zum Öffnen im Viewer. Beispiel aus der Spezifikation (CC0).",
+    title: "FHIR Patient Beispiel (JSON): Felder der Patient-Ressource",
+    desc: "FHIR-Patient-Beispiel als JSON: name, identifier, birthDate, address und contact Feld für Feld erklärt, mit Viewer. Beispiel: Spezifikation, CC0.",
     h1: "FHIR-Patient-Beispiel: JSON lesen und verstehen", h1plain: "FHIR-Patient-Beispiel: JSON lesen und verstehen",
     lead: "Die Patient-Ressource enthält laut Spezifikation demografische und andere administrative Angaben zu einer Person oder einem Tier, das Gesundheitsleistungen oder andere gesundheitsbezogene Dienste erhält. Das Beispiel darunter stammt aus der Spezifikation und enthält Sonderfälle: mehrere Namen, eine Adresse, einen Kontakt und eine Erweiterung an der Geburtsangabe.",
     buttons: [sampleBtn("patient", "Patient laden"), sampleBtn("bundle-verweise", "Patienten im Bundle")],
@@ -412,7 +412,7 @@ ${others("__")}
 
   await resPage({
     path: "fhir-observation-beispiel/", loinc: true, sample: "observation", src: "observation", crumb: "FHIR-Observation-Beispiel",
-    title: "FHIR Observation Beispiel: Gewicht und Blutdruck als JSON erklärt",
+    title: "FHIR Observation Beispiel (JSON): Gewicht und Blutdruck",
     desc: "FHIR-Observation-Beispiel als JSON: code, valueQuantity, Einheit und component an Gewicht und Blutdruck erklärt, mit Viewer. Beispiele: Spezifikation, CC0.",
     h1: "FHIR-Observation-Beispiel: Messwerte als JSON lesen", h1plain: "FHIR-Observation-Beispiel: Messwerte als JSON lesen",
     lead: "Observation ist die Ressource für Messungen und einfache Feststellungen zu einem Patienten oder Gerät, zum Beispiel Vitalwerte wie Körpergewicht und Blutdruck oder Laborwerte. Hier das Körpergewicht; den Blutdruck mit zwei Teilwerten laden Sie über die Schaltfläche „Blutdruck“.",
@@ -439,7 +439,7 @@ ${others("__")}
   await resPage({
     path: "fhir-encounter-beispiel/", sample: "encounter", src: "encounter", crumb: "FHIR-Encounter-Beispiel",
     title: "FHIR Encounter Beispiel (JSON): Behandlungsfall erklärt",
-    desc: "FHIR-Encounter-Beispiel als JSON: status, class und subject des kleinsten sinnvollen Behandlungsfalls erklärt, mit Viewer. Beispiel aus der Spezifikation (CC0).",
+    desc: "FHIR-Encounter-Beispiel als JSON: status, class und subject eines Behandlungsfalls erklärt, mit Viewer. Beispiel: Spezifikation, CC0.",
     h1: "FHIR-Encounter-Beispiel: Behandlungsfall als JSON", h1plain: "FHIR-Encounter-Beispiel: Behandlungsfall als JSON",
     lead: "Ein Encounter beschreibt nach der Spezifikation eine Interaktion zwischen Patient und Behandelnden, in der Gesundheitsleistungen erbracht oder der Gesundheitszustand beurteilt wird. Das Beispiel ist das kürzeste der Spezifikation: drei Elemente.",
     buttons: [sampleBtn("encounter", "Encounter laden")],

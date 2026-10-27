@@ -104,6 +104,16 @@ for (const w of SKIP ? [] : [1280, 360]) for (const id of SAMPLE_IDS) {
   const t = await pg.$eval("#fv-out", (o) => o.textContent); if (!/Muster/.test(t)) fail("XML nicht angezeigt"); else ok("XML eingefügt"); console.log("XML-Hinweise:", (await stat(pg)).slice(0, 200), "|", /30|Datum/.test(t) ? "Datumshinweis vorhanden" : "kein Datumshinweis");
   await pg.$eval("#fv-input", (i) => { i.value = '{"resourceType":"Patient", "id": '; }); await pg.click("#fv-show"); await sleep(200);
   const s2 = await stat(pg); if (!s2) fail("Keine Fehlermeldung bei kaputtem JSON"); else ok("Fehlermeldung: " + s2.slice(0, 100)); console.log("Meldung kaputtes JSON:", s2.slice(0, 200));
+  // Zu große Datei: altes Ergebnis darf nicht stehen bleiben
+  await pg.$eval("#fv-input", (i) => { i.value = '{"resourceType":"Patient","id":"alt"}'; }); await pg.click("#fv-show"); await sleep(200);
+  const big = "/tmp/fv-gross.json"; fs.writeFileSync(big, Buffer.alloc(21 * 1024 * 1024, 32));
+  await (await pg.$("#fv-file")).uploadFile(big); await sleep(500);
+  const gross = await pg.evaluate(() => ({ out: document.querySelector("#fv-out").hidden || !document.querySelector("#fv-out").textContent.trim(), st: document.querySelector("#fv-status, .status")?.textContent || "" }));
+  if (!gross.out || !/20 MB/.test(gross.st)) fail("Nach zu großer Datei bleibt altes Ergebnis oder Fehler fehlt: " + JSON.stringify(gross)); else ok("Zu große Datei leert Ergebnis");
+  fs.unlinkSync(big);
+  // Deutsche JSON-Meldung
+  await pg.$eval("#fv-input", (i) => { i.value = '{"a":1,}'; }); await pg.click("#fv-show"); await sleep(200);
+  const dj = await stat(pg); if (/Unexpected|Expected|JSON\.parse/.test(dj)) fail("Englische JSON-Meldung: " + dj.slice(0, 160)); else ok("Deutsche JSON-Meldung");
   if (errs.length) fail("Konsole Einfügen: " + errs.join(" | "));
   await pg.close();
 }

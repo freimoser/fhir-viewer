@@ -15,7 +15,7 @@ for (const f of files) {
   const p = info.pages.find((x) => x.path + "index.html" === f);
   const t = (html.match(/<title>([^<]*)<\/title>/) || [])[1] || ""; const d = (html.match(/<meta name="description" content="([^"]*)"/) || [])[1] || "";
   const decode = (s) => s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-  if (p) { console.log(`${f.padEnd(40)} T${decode(t).length} D${decode(d).length} | ${decode(t)}`); if (decode(t).length > 70) warn(f + ": Title " + decode(t).length); if (decode(d).length > 165 || decode(d).length < 70) warn(f + ": Description " + decode(d).length); }
+  if (p) { console.log(`${f.padEnd(40)} T${decode(t).length} D${decode(d).length} | ${decode(t)}`); if (decode(t).length > 60) fail(f + ": Title " + decode(t).length + " (max. 60)"); if (decode(d).length > 155 || decode(d).length < 70) fail(f + ": Description " + decode(d).length + " (max. 155)"); }
   const h1 = html.match(/<h1[ >]/g) || []; if (p && h1.length !== 1) fail(f + ": h1 x" + h1.length);
   for (const must of ['name="google-site-verification" content="6pYvtFCnU7UFcQFajtMSkQ7tYMy3Z_Bt7teKiT5yKNg"', 'name="msvalidate.01" content="E1F30DEB311AAF5458907DB431B481AC"', 'name="theme-color"', 'rel="icon"', 'lang="de"', "Content-Security-Policy"]) if (!html.includes(must)) fail(f + ": fehlt " + must);
   if (p && !html.includes(`<link rel="canonical" href="https://freimoser.github.io/fhir-viewer/${p.path}">`)) fail(f + ": canonical");

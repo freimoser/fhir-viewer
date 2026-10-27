@@ -35,3 +35,12 @@ test("leerer Ausdruck und Syntaxfehler liefern verständliche Meldungen", async 
 test("translateError", () => {
   assert.match(translateError(new Error("Parse error at \".\" (line 1, column 13). No matching prefix parselet.")), /Syntaxfehler bei "\." \(Zeichen 13\)/);
 });
+
+test("Textfunktion auf mehreren Elementen: eigene Meldung statt Argumentzahl", async () => {
+  const pat = { resourceType: "Patient", name: [{ family: "A" }, { family: "B" }] };
+  const r = await runFhirPath("name.family.upper()", pat);
+  assert.equal(r.ok, false);
+  assert.match(r.error, /upper\(\) braucht genau ein Element.*name\.family.*2 Elemente/);
+  assert.doesNotMatch(r.error, /falschen Anzahl/);
+  assert.deepEqual((await runFhirPath("name.family.first().upper()", pat)).results.map((x) => x.value), ["A"]);
+});

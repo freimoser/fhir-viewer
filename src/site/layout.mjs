@@ -78,7 +78,7 @@ const SISTER = {
   path: {
     intro: "Auch für andere Formate aus dem Gesundheitswesen gibt es Viewer, die im Browser laufen:",
     "cda-viewer": ["Klinische CDA-Dokumente anzeigen", "Klinische Dokumente im Browser lesen"],
-    "hl7v2-viewer": ["HL7-v2-Nachrichten im Browser prüfen", "HL7-v2-Nachrichten im Browser lesen"],
+    "hl7v2-viewer": ["Nachrichten im HL7-v2-Format ansehen", "HL7-v2-Nachrichten im Browser lesen"],
   },
 };
 

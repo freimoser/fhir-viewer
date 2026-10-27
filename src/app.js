@@ -39,6 +39,7 @@ function init(root) {
 
   function fail(err, raw, opts = {}) {
     state.model = null;
+    out.hidden = true; out.replaceChildren(); status.replaceChildren();
     status.className = "status error"; status.setAttribute("role", "alert");
     status.append(el("strong", "", "Eingabe konnte nicht gelesen werden"), el("p", "", err.message));
     if (err.hint) status.append(el("p", "hint", err.hint));

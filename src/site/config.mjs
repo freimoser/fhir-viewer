@@ -29,7 +29,7 @@ export const NAV = [
   { href: "was-ist-fhir/", label: "Was ist FHIR?" },
 ];
 
-export const DISCLAIMER_TM = "HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International; ihre Verwendung auf dieser Seite bedeutet keine Billigung durch HL7. Dieses Projekt ist unabhängig und kein Angebot von HL7.";
+export const DISCLAIMER_TM = "HL7®, HEALTH LEVEL SEVEN® und FHIR® sind eingetragene Marken von Health Level Seven International. Dieses Werkzeug ist ein unabhängiges Projekt und wird von HL7 International weder bereitgestellt noch empfohlen.";
 export const DEFINITION = "FHIR (Fast Healthcare Interoperability Resources) ist ein Standard von HL7 International, der Gesundheitsdaten als Ressourcen wie Patient, Observation oder Encounter beschreibt; ausgetauscht werden sie meist als JSON oder XML über REST-Schnittstellen.";
 
 // Redaktioneller Verweis auf den Anbieter: standardmäßig AUS, bis die Formulierung freigegeben ist.

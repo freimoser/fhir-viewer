@@ -5,12 +5,19 @@ export function loadCore() {
   return corePromise;
 }
 
-export function translateError(err, expr) {
+export function translateError(err, expr, ctx) {
   const m = String((err && err.message) || err);
   let u = m.match(/Unrecognized function: (\S+)/);
   if (u) return `Die Funktion "${u[1]}" kennt die Bibliothek nicht. Prüfen Sie die Schreibweise (FHIRPath unterscheidet Groß- und Kleinschreibung).`;
   let a = m.match(/Expected (\d+) arguments?/i);
-  if (a) return `Die Funktion wurde mit der falschen Anzahl Argumente aufgerufen (erwartet: ${a[1]}). Prüfen Sie die Klammern der Funktion.`;
+  if (a) {
+    // Die Bibliothek meldet so auch Funktionen, die auf einer Liste mit mehreren Elementen aufgerufen werden (z. B. name.family.upper()).
+    const on = m.match(/on "(.*)":/s);
+    const call = on && on[1].match(/^(.*)\.([A-Za-z]+)\(.*\)$/s);
+    if (call && ctx && ctx.count > 1) return `Die Funktion ${call[2]}() braucht genau ein Element, der Ausdruck davor (${call[1]}) liefert aber ${ctx.count} Elemente. Wählen Sie eines aus, zum Beispiel mit first() oder [0].`;
+    if (call && ctx) return `Die Funktion ${call[2]}() wurde mit einer unpassenden Eingabe oder Argumentzahl aufgerufen (erwartet: ${a[1]}). Prüfen Sie die Klammern und Argumente.`;
+    return `Die Funktion wurde mit einer unpassenden Eingabe oder Argumentzahl aufgerufen (erwartet: ${a[1]}). Funktionen wie upper() brauchen genau ein Element; wählen Sie bei Listen eines mit first() oder [0] aus.`;
+  }
   if (/Cant consume unknown more tokens|Cannot consume unknown more tokens/i.test(m)) return "Der Ausdruck ist unvollständig oder enthält Zeichen, die FHIRPath nicht kennt. Prüfen Sie Klammern, Anführungszeichen (einfache: 'text') und Operatoren.";
   let pe = m.match(/Parse error at "([^"]*)" \(line (\d+), column (\d+)\)/);
   if (pe) return `Syntaxfehler bei "${pe[1]}" (Zeichen ${pe[3]}): An dieser Stelle fehlt ein Ausdruck, oder ein Zeichen steht doppelt.`;
@@ -41,6 +48,10 @@ export async function runFhirPath(expression, resource) {
     const out = core.evalFhirPath(expr, resource);
     return { ok: true, results: out.map((value) => ({ value, type: describeType(value) })) };
   } catch (e) {
-    return { ok: false, error: translateError(e, expr) };
+    let ctx;
+    const call = String((e && e.message) || "").match(/on "(.*)":/s);
+    const parts = call && call[1].match(/^(.*)\.([A-Za-z]+)\(.*\)$/s);
+    if (parts) { try { ctx = { count: core.evalFhirPath(parts[1], resource).length }; } catch { ctx = undefined; } }
+    return { ok: false, error: translateError(e, expr, ctx) };
   }
 }
